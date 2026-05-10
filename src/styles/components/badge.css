@@ -1,0 +1,47 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+/* Category variants */
+.badge--react    { background-color: #DBEAFE; color: #1D4ED8; }
+.badge--node     { background-color: #DCFCE7; color: #15803D; }
+.badge--python   { background-color: #FEF9C3; color: #A16207; }
+.badge--vue      { background-color: #D1FAE5; color: #065F46; }
+.badge--angular  { background-color: #FEE2E2; color: #991B1B; }
+.badge--nest     { background-color: #FCE7F3; color: #9D174D; }
+.badge--go       { background-color: #E0F2FE; color: #0369A1; }
+.badge--java     { background-color: #FEF3C7; color: #92400E; }
+
+.dark .badge--react    { background-color: #1E3A5F; color: #93C5FD; }
+.dark .badge--node     { background-color: #064E3B; color: #6EE7B7; }
+.dark .badge--python   { background-color: #3F2A00; color: #FCD34D; }
+.dark .badge--vue      { background-color: #022C22; color: #34D399; }
+.dark .badge--angular  { background-color: #450A0A; color: #FCA5A5; }
+.dark .badge--nest     { background-color: #4A044E; color: #F0ABFC; }
+.dark .badge--go       { background-color: #082F49; color: #7DD3FC; }
+.dark .badge--java     { background-color: #3D1A00; color: #FCD34D; }
+
+/* Level variants */
+.badge--beginner     { background-color: #F0FDF4; color: #15803D; }
+.badge--intermediate { background-color: #FFF7ED; color: #C2410C; }
+.badge--advanced     { background-color: #FFF1F2; color: #BE123C; }
+
+.dark .badge--beginner     { background-color: #052E16; color: #86EFAC; }
+.dark .badge--intermediate { background-color: #431407; color: #FDBA74; }
+.dark .badge--advanced     { background-color: #4C0519; color: #FDA4AF; }
+
+/* Tag variant */
+.badge--tag {
+  background-color: var(--color-surface-alt);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
