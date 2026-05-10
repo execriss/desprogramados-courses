@@ -7,8 +7,8 @@ export function Testimonials() {
     <section className="section">
       <div className="section__inner">
         <div className="section__header">
-          <p className="section__eyebrow">Testimonials</p>
-          <h2 className="section__title">What our students say</h2>
+          <p className="section__eyebrow">Testimonios</p>
+          <h2 className="section__title">Lo que dicen nuestros estudiantes</h2>
         </div>
 
         <div className="testimonials__grid">

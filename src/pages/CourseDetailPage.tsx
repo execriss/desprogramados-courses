@@ -21,13 +21,19 @@ const CATEGORY_LABELS: Record<Course['category'], string> = {
   java: 'Java',
 };
 
+const LEVEL_LABELS: Record<Course['level'], string> = {
+  beginner: 'Principiante',
+  intermediate: 'Intermedio',
+  advanced: 'Avanzado',
+};
+
 const LEARN_ITEMS = [
-  'Build real production-ready projects',
-  'Master modern patterns and best practices',
-  'Write clean, maintainable code',
-  'Deploy your apps with confidence',
-  'Debug and solve problems independently',
-  'Understand core architecture decisions',
+  'Construye proyectos reales listos para producción',
+  'Domina patrones modernos y buenas prácticas',
+  'Escribe código limpio y mantenible',
+  'Despliega tus aplicaciones con confianza',
+  'Depura y resuelve problemas de forma autónoma',
+  'Comprende las decisiones arquitectónicas clave',
 ];
 
 export function CourseDetailPage() {
@@ -64,7 +70,7 @@ export function CourseDetailPage() {
             >
               <div className="course-detail__meta">
                 <Badge variant={course.category}>{CATEGORY_LABELS[course.category]}</Badge>
-                <Badge variant={course.level}>{course.level}</Badge>
+                <Badge variant={course.level}>{LEVEL_LABELS[course.level]}</Badge>
               </div>
 
               <h1 className="course-detail__title">{course.title}</h1>
@@ -74,7 +80,7 @@ export function CourseDetailPage() {
                 <span className="course-detail__stat">
                   <span className="course-detail__rating-stars">★</span>
                   <span className="course-detail__stat-value">{course.rating.toFixed(1)}</span>
-                  <span>({formatStudentCount(course.studentsCount)} students)</span>
+                  <span>({formatStudentCount(course.studentsCount)} estudiantes)</span>
                 </span>
                 <span className="course-detail__stat">
                   <Clock size={15} />
@@ -82,17 +88,16 @@ export function CourseDetailPage() {
                 </span>
                 <span className="course-detail__stat">
                   <BookOpen size={15} />
-                  <span className="course-detail__stat-value">{course.lessonsCount} lessons</span>
+                  <span className="course-detail__stat-value">{course.lessonsCount} lecciones</span>
                 </span>
                 <span className="course-detail__stat">
                   <Users size={15} />
                   <span className="course-detail__stat-value">{formatStudentCount(course.studentsCount)}</span>
-                  <span>enrolled</span>
+                  <span>inscritos</span>
                 </span>
               </div>
             </motion.div>
 
-            {/* Sidebar (shows inline on hero on large screens) */}
             <motion.aside
               className="course-sidebar"
               initial={{ opacity: 0, x: 12 }}
@@ -105,25 +110,25 @@ export function CourseDetailPage() {
               <div className="course-sidebar__body">
                 <p className="course-sidebar__price">{formatPrice(course.price)}</p>
                 <Link to="/register">
-                  <Button variant="primary" size="lg" fullWidth>Enroll now</Button>
+                  <Button variant="primary" size="lg" fullWidth>Inscribirse ahora</Button>
                 </Link>
-                <Button variant="secondary" size="md" fullWidth>Try free preview</Button>
+                <Button variant="secondary" size="md" fullWidth>Ver previsualización gratis</Button>
                 <ul className="course-sidebar__highlights">
                   <li className="course-sidebar__highlight">
                     <Clock size={15} className="course-sidebar__highlight-icon" />
-                    {formatDuration(course.durationHours)} of on-demand video
+                    {formatDuration(course.durationHours)} de vídeo bajo demanda
                   </li>
                   <li className="course-sidebar__highlight">
                     <BookOpen size={15} className="course-sidebar__highlight-icon" />
-                    {course.lessonsCount} lessons
+                    {course.lessonsCount} lecciones
                   </li>
                   <li className="course-sidebar__highlight">
                     <Users size={15} className="course-sidebar__highlight-icon" />
-                    {formatStudentCount(course.studentsCount)} students enrolled
+                    {formatStudentCount(course.studentsCount)} estudiantes inscritos
                   </li>
                   <li className="course-sidebar__highlight">
                     <Check size={15} className="course-sidebar__highlight-icon" />
-                    Full lifetime access
+                    Acceso de por vida
                   </li>
                 </ul>
               </div>
@@ -134,9 +139,9 @@ export function CourseDetailPage() {
         {/* Body */}
         <div className="course-detail__body">
           <div className="course-detail__main">
-            {/* What you'll learn */}
+            {/* Lo que aprenderás */}
             <section>
-              <h2 className="course-section__title">What you'll learn</h2>
+              <h2 className="course-section__title">Lo que aprenderás</h2>
               <div className="learn-grid">
                 {LEARN_ITEMS.map((item) => (
                   <div key={item} className="learn-item">
@@ -147,9 +152,9 @@ export function CourseDetailPage() {
               </div>
             </section>
 
-            {/* Curriculum */}
+            {/* Temario */}
             <section>
-              <h2 className="course-section__title">Course curriculum</h2>
+              <h2 className="course-section__title">Temario del curso</h2>
               {course.curriculum.map((section, idx) => {
                 const isOpen = openSections.has(idx);
                 return (
@@ -162,7 +167,7 @@ export function CourseDetailPage() {
                       <div>
                         <span className="curriculum-section__name">{section.title}</span>
                         <span className="curriculum-section__count" style={{ marginLeft: '12px' }}>
-                          {section.lessons.length} lessons
+                          {section.lessons.length} lección{section.lessons.length !== 1 ? 'es' : ''}
                         </span>
                       </div>
                       <ChevronDown
@@ -177,7 +182,7 @@ export function CourseDetailPage() {
                             <PlayCircle size={15} className="curriculum-lesson__icon" />
                             <span className="curriculum-lesson__title">{lesson.title}</span>
                             {lesson.isPreview && (
-                              <span className="curriculum-lesson__preview">Preview</span>
+                              <span className="curriculum-lesson__preview">Vista previa</span>
                             )}
                             <span className="curriculum-lesson__duration">{lesson.durationMin}m</span>
                           </li>
@@ -191,7 +196,7 @@ export function CourseDetailPage() {
 
             {/* Instructor */}
             <section>
-              <h2 className="course-section__title">About the instructor</h2>
+              <h2 className="course-section__title">Sobre el instructor</h2>
               <div className="instructor-card">
                 <div className="instructor-card__avatar" aria-hidden="true">
                   {instructorInitials}
@@ -199,15 +204,14 @@ export function CourseDetailPage() {
                 <div>
                   <p className="instructor-card__name">{course.instructor}</p>
                   <p className="instructor-card__bio">
-                    Senior software engineer with 10+ years of industry experience building scalable systems.
-                    Passionate about teaching practical, production-grade skills to the next generation of developers.
+                    Ingeniero de software senior con más de 10 años de experiencia construyendo sistemas escalables.
+                    Apasionado por enseñar habilidades prácticas y de nivel producción a la próxima generación de desarrolladores.
                   </p>
                 </div>
               </div>
             </section>
           </div>
 
-          {/* Sidebar spacer column on large screens */}
           <div aria-hidden="true" />
         </div>
       </main>

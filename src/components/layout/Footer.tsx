@@ -10,7 +10,7 @@ export function Footer() {
           <div className="footer__brand">
             <div className="footer__logo">Learn<span>Craft</span></div>
             <p className="footer__tagline">
-              Premium online courses taught by industry experts. Level up your skills and build what matters.
+              Cursos online premium impartidos por expertos de la industria. Mejora tus habilidades y construye lo que importa.
             </p>
             <div className="footer__social">
               <a href="#" className="footer__social-link" aria-label="GitHub">
@@ -26,38 +26,38 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="footer__col-title">Platform</p>
+            <p className="footer__col-title">Plataforma</p>
             <ul className="footer__links">
-              <li><Link to="/courses" className="footer__link">All Courses</Link></li>
-              <li><a href="#" className="footer__link">Learning Paths</a></li>
-              <li><a href="#" className="footer__link">Pricing</a></li>
-              <li><a href="#" className="footer__link">For Teams</a></li>
+              <li><Link to="/courses" className="footer__link">Todos los cursos</Link></li>
+              <li><a href="#" className="footer__link">Rutas de aprendizaje</a></li>
+              <li><a href="#" className="footer__link">Precios</a></li>
+              <li><a href="#" className="footer__link">Para empresas</a></li>
             </ul>
           </div>
 
           <div>
-            <p className="footer__col-title">Company</p>
+            <p className="footer__col-title">Empresa</p>
             <ul className="footer__links">
-              <li><a href="#" className="footer__link">About</a></li>
+              <li><a href="#" className="footer__link">Sobre nosotros</a></li>
               <li><a href="#" className="footer__link">Blog</a></li>
-              <li><a href="#" className="footer__link">Careers</a></li>
-              <li><a href="#" className="footer__link">Contact</a></li>
+              <li><a href="#" className="footer__link">Trabaja con nosotros</a></li>
+              <li><a href="#" className="footer__link">Contacto</a></li>
             </ul>
           </div>
 
           <div>
             <p className="footer__col-title">Legal</p>
             <ul className="footer__links">
-              <li><a href="#" className="footer__link">Privacy Policy</a></li>
-              <li><a href="#" className="footer__link">Terms of Service</a></li>
-              <li><a href="#" className="footer__link">Cookie Policy</a></li>
+              <li><a href="#" className="footer__link">Política de privacidad</a></li>
+              <li><a href="#" className="footer__link">Términos de uso</a></li>
+              <li><a href="#" className="footer__link">Política de cookies</a></li>
             </ul>
           </div>
         </div>
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {new Date().getFullYear()} LearnCraft. All rights reserved.
+            © {new Date().getFullYear()} LearnCraft. Todos los derechos reservados.
           </p>
         </div>
       </div>

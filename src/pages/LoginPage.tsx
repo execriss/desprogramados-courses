@@ -13,9 +13,9 @@ export function LoginPage() {
 
   const validate = () => {
     const errs: Record<string, string> = {};
-    if (!email) errs.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(email)) errs.email = 'Enter a valid email';
-    if (!password) errs.password = 'Password is required';
+    if (!email) errs.email = 'El email es obligatorio';
+    else if (!/\S+@\S+\.\S+/.test(email)) errs.email = 'Introduce un email válido';
+    if (!password) errs.password = 'La contraseña es obligatoria';
     return errs;
   };
 
@@ -38,8 +38,8 @@ export function LoginPage() {
           transition={{ duration: 0.35 }}
         >
           <p className="auth-card__logo">Learn<span>Craft</span></p>
-          <h1 className="auth-card__title">Welcome back</h1>
-          <p className="auth-card__subtitle">Sign in to continue learning</p>
+          <h1 className="auth-card__title">Bienvenido de vuelta</h1>
+          <p className="auth-card__subtitle">Inicia sesión para continuar aprendiendo</p>
 
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <div className="form-field">
@@ -48,7 +48,7 @@ export function LoginPage() {
                 id="email"
                 type="email"
                 className={`form-field__input${errors.email ? ' form-field__input--error' : ''}`}
-                placeholder="you@example.com"
+                placeholder="tu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
@@ -57,12 +57,12 @@ export function LoginPage() {
             </div>
 
             <div className="form-field">
-              <label className="form-field__label" htmlFor="password">Password</label>
+              <label className="form-field__label" htmlFor="password">Contraseña</label>
               <input
                 id="password"
                 type="password"
                 className={`form-field__input${errors.password ? ' form-field__input--error' : ''}`}
-                placeholder="Your password"
+                placeholder="Tu contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
@@ -71,13 +71,13 @@ export function LoginPage() {
             </div>
 
             <Button type="submit" variant="primary" size="md" fullWidth loading={loading}>
-              Sign in
+              Iniciar sesión
             </Button>
           </form>
 
           <p className="auth-footer">
-            Don't have an account?{' '}
-            <Link to="/register" className="auth-footer__link">Create one free</Link>
+            ¿No tienes cuenta?{' '}
+            <Link to="/register" className="auth-footer__link">Créala gratis</Link>
           </p>
         </motion.div>
       </main>

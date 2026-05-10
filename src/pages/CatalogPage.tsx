@@ -10,7 +10,7 @@ type Category = Course['category'] | 'all';
 type Level = Course['level'] | 'all';
 
 const CATEGORIES: { value: Category; label: string }[] = [
-  { value: 'all', label: 'All' },
+  { value: 'all', label: 'Todos' },
   { value: 'react', label: 'React' },
   { value: 'node', label: 'Node.js' },
   { value: 'python', label: 'Python' },
@@ -22,10 +22,10 @@ const CATEGORIES: { value: Category; label: string }[] = [
 ];
 
 const LEVELS: { value: Level; label: string }[] = [
-  { value: 'all', label: 'All levels' },
-  { value: 'beginner', label: 'Beginner' },
-  { value: 'intermediate', label: 'Intermediate' },
-  { value: 'advanced', label: 'Advanced' },
+  { value: 'all', label: 'Todos los niveles' },
+  { value: 'beginner', label: 'Principiante' },
+  { value: 'intermediate', label: 'Intermedio' },
+  { value: 'advanced', label: 'Avanzado' },
 ];
 
 export function CatalogPage() {
@@ -36,9 +36,9 @@ export function CatalogPage() {
       <main className="catalog">
         <div className="catalog__inner">
           <header className="catalog__header">
-            <h1 className="catalog__title">Course Catalog</h1>
+            <h1 className="catalog__title">Catálogo de cursos</h1>
             <p className="catalog__subtitle">
-              {courses.length} course{courses.length !== 1 ? 's' : ''} available
+              {courses.length} curso{courses.length !== 1 ? 's' : ''} disponible{courses.length !== 1 ? 's' : ''}
             </p>
           </header>
 
@@ -48,15 +48,15 @@ export function CatalogPage() {
               <input
                 type="search"
                 className="search-bar__input"
-                placeholder="Search courses, instructors, topics…"
+                placeholder="Buscar cursos, instructores, temas…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                aria-label="Search courses"
+                aria-label="Buscar cursos"
               />
             </div>
 
-            <div className="filter-chips" role="group" aria-label="Filter by technology">
-              <span className="filter-chips__label">Tech:</span>
+            <div className="filter-chips" role="group" aria-label="Filtrar por tecnología">
+              <span className="filter-chips__label">Tecnología:</span>
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat.value}
@@ -69,8 +69,8 @@ export function CatalogPage() {
               ))}
             </div>
 
-            <div className="filter-chips" role="group" aria-label="Filter by level">
-              <span className="filter-chips__label">Level:</span>
+            <div className="filter-chips" role="group" aria-label="Filtrar por nivel">
+              <span className="filter-chips__label">Nivel:</span>
               {LEVELS.map((lvl) => (
                 <button
                   key={lvl.value}
@@ -87,8 +87,8 @@ export function CatalogPage() {
           {courses.length === 0 ? (
             <div className="empty-state">
               <BookOpen size={48} className="empty-state__icon" />
-              <h2 className="empty-state__title">No courses found</h2>
-              <p className="empty-state__text">Try adjusting your filters or search terms.</p>
+              <h2 className="empty-state__title">No se encontraron cursos</h2>
+              <p className="empty-state__text">Prueba ajustando los filtros o los términos de búsqueda.</p>
             </div>
           ) : (
             <motion.div

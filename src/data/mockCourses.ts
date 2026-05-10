@@ -3,11 +3,11 @@ import type { Course, Testimonial } from '../types';
 export const mockCourses: Course[] = [
   {
     id: '1',
-    slug: 'react-19-complete-guide',
-    title: 'React 19 — The Complete Modern Guide',
+    slug: 'react-19-guia-completa',
+    title: 'React 19 — Guía Completa y Moderna',
     description:
-      'Master React 19 with hooks, server components, concurrent features, and modern patterns. Build production-ready apps from scratch.',
-    instructor: 'Sarah Chen',
+      'Domina React 19 con hooks, componentes de servidor, características concurrentes y patrones modernos. Construye aplicaciones listas para producción desde cero.',
+    instructor: 'Sara Montoya',
     category: 'react',
     level: 'intermediate',
     price: 89,
@@ -19,38 +19,38 @@ export const mockCourses: Course[] = [
     isFeatured: true,
     curriculum: [
       {
-        title: 'Getting Started',
+        title: 'Primeros pasos',
         lessons: [
-          { title: 'Course Overview', durationMin: 5, isPreview: true },
-          { title: 'Setting Up Your Environment', durationMin: 12, isPreview: true },
-          { title: 'Your First React Component', durationMin: 18, isPreview: false },
+          { title: 'Resumen del curso', durationMin: 5, isPreview: true },
+          { title: 'Configuración del entorno', durationMin: 12, isPreview: true },
+          { title: 'Tu primer componente React', durationMin: 18, isPreview: false },
         ],
       },
       {
-        title: 'Core Concepts',
+        title: 'Conceptos fundamentales',
         lessons: [
-          { title: 'JSX Deep Dive', durationMin: 25, isPreview: false },
-          { title: 'Props and State', durationMin: 30, isPreview: false },
-          { title: 'Event Handling', durationMin: 20, isPreview: false },
+          { title: 'JSX en profundidad', durationMin: 25, isPreview: false },
+          { title: 'Props y estado', durationMin: 30, isPreview: false },
+          { title: 'Manejo de eventos', durationMin: 20, isPreview: false },
         ],
       },
       {
-        title: 'Advanced Hooks',
+        title: 'Hooks avanzados',
         lessons: [
-          { title: 'useEffect Mastery', durationMin: 35, isPreview: false },
-          { title: 'useContext and useReducer', durationMin: 28, isPreview: false },
-          { title: 'Custom Hooks', durationMin: 32, isPreview: false },
+          { title: 'Dominio de useEffect', durationMin: 35, isPreview: false },
+          { title: 'useContext y useReducer', durationMin: 28, isPreview: false },
+          { title: 'Hooks personalizados', durationMin: 32, isPreview: false },
         ],
       },
     ],
   },
   {
     id: '2',
-    slug: 'node-backend-mastery',
-    title: 'Node.js Backend Mastery: APIs That Scale',
+    slug: 'node-backend-profesional',
+    title: 'Node.js Backend Profesional: APIs que Escalan',
     description:
-      'Build robust REST and GraphQL APIs with Node.js, Express, and PostgreSQL. Learn authentication, caching, and deployment best practices.',
-    instructor: 'Marcus Webb',
+      'Construye APIs REST y GraphQL robustas con Node.js, Express y PostgreSQL. Aprende autenticación, caché y buenas prácticas de despliegue.',
+    instructor: 'Marcos Vidal',
     category: 'node',
     level: 'intermediate',
     price: 79,
@@ -62,28 +62,28 @@ export const mockCourses: Course[] = [
     isFeatured: true,
     curriculum: [
       {
-        title: 'Node.js Fundamentals',
+        title: 'Fundamentos de Node.js',
         lessons: [
-          { title: 'Event Loop Deep Dive', durationMin: 22, isPreview: true },
-          { title: 'Modules and Packages', durationMin: 18, isPreview: false },
+          { title: 'El event loop a fondo', durationMin: 22, isPreview: true },
+          { title: 'Módulos y paquetes', durationMin: 18, isPreview: false },
         ],
       },
       {
-        title: 'Building APIs',
+        title: 'Construyendo APIs',
         lessons: [
-          { title: 'REST Design Principles', durationMin: 25, isPreview: false },
-          { title: 'Authentication with JWT', durationMin: 35, isPreview: false },
+          { title: 'Principios de diseño REST', durationMin: 25, isPreview: false },
+          { title: 'Autenticación con JWT', durationMin: 35, isPreview: false },
         ],
       },
     ],
   },
   {
     id: '3',
-    slug: 'python-data-science-bootcamp',
-    title: 'Python for Data Science: From Zero to ML',
+    slug: 'python-ciencia-datos',
+    title: 'Python para Ciencia de Datos: De Cero a ML',
     description:
-      'Comprehensive Python course covering pandas, NumPy, visualization, and an intro to machine learning with scikit-learn.',
-    instructor: 'Aisha Patel',
+      'Curso completo de Python con pandas, NumPy, visualización e introducción al machine learning con scikit-learn.',
+    instructor: 'Valentina Cruz',
     category: 'python',
     level: 'beginner',
     price: 69,
@@ -95,18 +95,18 @@ export const mockCourses: Course[] = [
     isFeatured: true,
     curriculum: [
       {
-        title: 'Python Basics',
+        title: 'Fundamentos de Python',
         lessons: [
-          { title: 'Variables and Data Types', durationMin: 20, isPreview: true },
-          { title: 'Control Flow', durationMin: 25, isPreview: false },
-          { title: 'Functions and Scope', durationMin: 30, isPreview: false },
+          { title: 'Variables y tipos de datos', durationMin: 20, isPreview: true },
+          { title: 'Control de flujo', durationMin: 25, isPreview: false },
+          { title: 'Funciones y alcance', durationMin: 30, isPreview: false },
         ],
       },
       {
-        title: 'Data Analysis',
+        title: 'Análisis de datos',
         lessons: [
-          { title: 'Intro to Pandas', durationMin: 35, isPreview: false },
-          { title: 'Data Cleaning', durationMin: 40, isPreview: false },
+          { title: 'Introducción a Pandas', durationMin: 35, isPreview: false },
+          { title: 'Limpieza de datos', durationMin: 40, isPreview: false },
         ],
       },
     ],
@@ -114,10 +114,10 @@ export const mockCourses: Course[] = [
   {
     id: '4',
     slug: 'vue3-composition-api',
-    title: 'Vue 3 with Composition API & Pinia',
+    title: 'Vue 3 con Composition API y Pinia',
     description:
-      'Learn Vue 3 the right way. Deep dive into the Composition API, TypeScript integration, and modern state management with Pinia.',
-    instructor: 'Leo Martinez',
+      'Aprende Vue 3 como se debe. Inmersión en la Composition API, integración con TypeScript y gestión de estado moderna con Pinia.',
+    instructor: 'Leonardo Ruiz',
     category: 'vue',
     level: 'intermediate',
     price: 74,
@@ -128,21 +128,21 @@ export const mockCourses: Course[] = [
     tags: ['composition api', 'pinia', 'typescript', 'vite'],
     curriculum: [
       {
-        title: 'Vue 3 Fundamentals',
+        title: 'Fundamentos de Vue 3',
         lessons: [
-          { title: 'Options vs Composition API', durationMin: 20, isPreview: true },
-          { title: 'Reactivity System', durationMin: 28, isPreview: false },
+          { title: 'Options API vs Composition API', durationMin: 20, isPreview: true },
+          { title: 'Sistema de reactividad', durationMin: 28, isPreview: false },
         ],
       },
     ],
   },
   {
     id: '5',
-    slug: 'angular-enterprise-apps',
-    title: 'Angular 17: Enterprise Application Architecture',
+    slug: 'angular-aplicaciones-enterprise',
+    title: 'Angular 17: Arquitectura para Aplicaciones Enterprise',
     description:
-      'Build scalable enterprise Angular applications with signals, standalone components, RxJS best practices, and NgRx.',
-    instructor: 'Emma Johansson',
+      'Construye aplicaciones Angular escalables con signals, componentes standalone, mejores prácticas de RxJS y NgRx.',
+    instructor: 'Emma Johansen',
     category: 'angular',
     level: 'advanced',
     price: 94,
@@ -153,9 +153,9 @@ export const mockCourses: Course[] = [
     tags: ['signals', 'rxjs', 'ngrx', 'standalone'],
     curriculum: [
       {
-        title: 'Modern Angular',
+        title: 'Angular moderno',
         lessons: [
-          { title: 'Standalone Components', durationMin: 22, isPreview: true },
+          { title: 'Componentes standalone', durationMin: 22, isPreview: true },
           { title: 'Angular Signals', durationMin: 30, isPreview: false },
         ],
       },
@@ -163,11 +163,11 @@ export const mockCourses: Course[] = [
   },
   {
     id: '6',
-    slug: 'nestjs-microservices',
-    title: 'NestJS: Microservices & Clean Architecture',
+    slug: 'nestjs-microservicios',
+    title: 'NestJS: Microservicios y Arquitectura Limpia',
     description:
-      'Design production-grade microservices with NestJS, RabbitMQ, and clean architecture patterns. Includes Docker and Kubernetes.',
-    instructor: 'David Kim',
+      'Diseña microservicios de producción con NestJS, RabbitMQ y patrones de arquitectura limpia. Incluye Docker y Kubernetes.',
+    instructor: 'David Kang',
     category: 'nest',
     level: 'advanced',
     price: 99,
@@ -175,23 +175,23 @@ export const mockCourses: Course[] = [
     studentsCount: 3870,
     lessonsCount: 61,
     durationHours: 19.5,
-    tags: ['microservices', 'rabbitmq', 'docker', 'kubernetes'],
+    tags: ['microservicios', 'rabbitmq', 'docker', 'kubernetes'],
     curriculum: [
       {
-        title: 'NestJS Core',
+        title: 'Núcleo de NestJS',
         lessons: [
-          { title: 'Modules, Providers, Controllers', durationMin: 25, isPreview: true },
-          { title: 'Dependency Injection', durationMin: 30, isPreview: false },
+          { title: 'Módulos, Providers y Controladores', durationMin: 25, isPreview: true },
+          { title: 'Inyección de dependencias', durationMin: 30, isPreview: false },
         ],
       },
     ],
   },
   {
     id: '7',
-    slug: 'go-systems-programming',
-    title: 'Go: Systems Programming & High Performance APIs',
+    slug: 'go-apis-alto-rendimiento',
+    title: 'Go: Programación de Sistemas y APIs de Alto Rendimiento',
     description:
-      'Learn Go from the ground up — concurrency, goroutines, channels, and building blazing-fast web services with Gin and GORM.',
+      'Aprende Go desde cero — concurrencia, goroutines, canales y construcción de servicios web ultrarrápidos con Gin y GORM.',
     instructor: 'Nina Volkov',
     category: 'go',
     level: 'intermediate',
@@ -200,13 +200,13 @@ export const mockCourses: Course[] = [
     studentsCount: 5130,
     lessonsCount: 55,
     durationHours: 15,
-    tags: ['goroutines', 'channels', 'gin', 'gorm'],
+    tags: ['goroutines', 'canales', 'gin', 'gorm'],
     curriculum: [
       {
-        title: 'Go Fundamentals',
+        title: 'Fundamentos de Go',
         lessons: [
-          { title: 'Types and Interfaces', durationMin: 25, isPreview: true },
-          { title: 'Goroutines and Channels', durationMin: 35, isPreview: false },
+          { title: 'Tipos e interfaces', durationMin: 25, isPreview: true },
+          { title: 'Goroutines y canales', durationMin: 35, isPreview: false },
         ],
       },
     ],
@@ -214,10 +214,10 @@ export const mockCourses: Course[] = [
   {
     id: '8',
     slug: 'java-spring-boot',
-    title: 'Java & Spring Boot 3: Professional Development',
+    title: 'Java y Spring Boot 3: Desarrollo Profesional',
     description:
-      'The most complete Java and Spring Boot course. REST APIs, Spring Security, JPA/Hibernate, and cloud deployment on AWS.',
-    instructor: 'Carlos Ruiz',
+      'El curso más completo de Java y Spring Boot. APIs REST, Spring Security, JPA/Hibernate y despliegue en la nube con AWS.',
+    instructor: 'Carlos Romero',
     category: 'java',
     level: 'beginner',
     price: 79,
@@ -228,21 +228,21 @@ export const mockCourses: Course[] = [
     tags: ['spring boot', 'jpa', 'spring security', 'aws'],
     curriculum: [
       {
-        title: 'Java Essentials',
+        title: 'Esenciales de Java',
         lessons: [
-          { title: 'OOP Principles', durationMin: 30, isPreview: true },
-          { title: 'Collections Framework', durationMin: 35, isPreview: false },
+          { title: 'Principios de POO', durationMin: 30, isPreview: true },
+          { title: 'Framework de Colecciones', durationMin: 35, isPreview: false },
         ],
       },
     ],
   },
   {
     id: '9',
-    slug: 'react-native-mobile',
-    title: 'React Native: Ship iOS & Android Apps',
+    slug: 'react-native-apps-moviles',
+    title: 'React Native: Publica en iOS y Android',
     description:
-      'Build cross-platform mobile apps with React Native and Expo. Navigation, animations, push notifications, and App Store deployment.',
-    instructor: 'Sarah Chen',
+      'Construye apps multiplataforma con React Native y Expo. Navegación, animaciones, notificaciones push y publicación en App Store.',
+    instructor: 'Sara Montoya',
     category: 'react',
     level: 'intermediate',
     price: 84,
@@ -250,12 +250,12 @@ export const mockCourses: Course[] = [
     studentsCount: 8920,
     lessonsCount: 78,
     durationHours: 24,
-    tags: ['expo', 'navigation', 'animations', 'app store'],
+    tags: ['expo', 'navegación', 'animaciones', 'app store'],
     curriculum: [
       {
-        title: 'React Native Basics',
+        title: 'Bases de React Native',
         lessons: [
-          { title: 'Components and Styling', durationMin: 22, isPreview: true },
+          { title: 'Componentes y estilos', durationMin: 22, isPreview: true },
           { title: 'React Navigation', durationMin: 28, isPreview: false },
         ],
       },
@@ -264,10 +264,10 @@ export const mockCourses: Course[] = [
   {
     id: '10',
     slug: 'python-fastapi',
-    title: 'FastAPI: Modern Python Web APIs',
+    title: 'FastAPI: APIs Web Modernas con Python',
     description:
-      'Build ultra-fast APIs with Python and FastAPI. Automatic OpenAPI docs, async support, Pydantic validation, and PostgreSQL.',
-    instructor: 'Aisha Patel',
+      'Construye APIs ultrarrápidas con Python y FastAPI. Documentación OpenAPI automática, soporte async, validación Pydantic y PostgreSQL.',
+    instructor: 'Valentina Cruz',
     category: 'python',
     level: 'intermediate',
     price: 72,
@@ -278,10 +278,10 @@ export const mockCourses: Course[] = [
     tags: ['fastapi', 'async', 'pydantic', 'sqlalchemy'],
     curriculum: [
       {
-        title: 'FastAPI Fundamentals',
+        title: 'Fundamentos de FastAPI',
         lessons: [
-          { title: 'Path Operations & Type Hints', durationMin: 20, isPreview: true },
-          { title: 'Dependency Injection', durationMin: 25, isPreview: false },
+          { title: 'Operaciones de ruta y type hints', durationMin: 20, isPreview: true },
+          { title: 'Inyección de dependencias', durationMin: 25, isPreview: false },
         ],
       },
     ],
@@ -289,10 +289,10 @@ export const mockCourses: Course[] = [
   {
     id: '11',
     slug: 'vue-nuxt-fullstack',
-    title: 'Full-Stack with Nuxt 3 & Vue 3',
+    title: 'Full-Stack con Nuxt 3 y Vue 3',
     description:
-      'Create full-stack web apps with Nuxt 3. SSR, SSG, API routes, Nitro server, and Prisma for the database layer.',
-    instructor: 'Leo Martinez',
+      'Crea aplicaciones web full-stack con Nuxt 3. SSR, SSG, rutas de API, servidor Nitro y Prisma para la capa de base de datos.',
+    instructor: 'Leonardo Ruiz',
     category: 'vue',
     level: 'advanced',
     price: 89,
@@ -303,21 +303,21 @@ export const mockCourses: Course[] = [
     tags: ['nuxt', 'ssr', 'nitro', 'prisma'],
     curriculum: [
       {
-        title: 'Nuxt 3 Setup',
+        title: 'Configuración de Nuxt 3',
         lessons: [
-          { title: 'File-based Routing', durationMin: 18, isPreview: true },
-          { title: 'Data Fetching', durationMin: 25, isPreview: false },
+          { title: 'Enrutamiento basado en archivos', durationMin: 18, isPreview: true },
+          { title: 'Fetching de datos', durationMin: 25, isPreview: false },
         ],
       },
     ],
   },
   {
     id: '12',
-    slug: 'node-realtime-apps',
-    title: 'Real-Time Apps with Node.js & Socket.IO',
+    slug: 'node-apps-tiempo-real',
+    title: 'Apps en Tiempo Real con Node.js y Socket.IO',
     description:
-      'Build real-time chat apps, collaborative tools, and live dashboards with Node.js, Socket.IO, Redis, and React.',
-    instructor: 'Marcus Webb',
+      'Construye chats en tiempo real, herramientas colaborativas y dashboards en vivo con Node.js, Socket.IO, Redis y React.',
+    instructor: 'Marcos Vidal',
     category: 'node',
     level: 'intermediate',
     price: 76,
@@ -328,10 +328,10 @@ export const mockCourses: Course[] = [
     tags: ['socket.io', 'redis', 'websockets', 'react'],
     curriculum: [
       {
-        title: 'WebSockets Foundation',
+        title: 'Base de WebSockets',
         lessons: [
-          { title: 'HTTP vs WebSocket Protocol', durationMin: 15, isPreview: true },
-          { title: 'Socket.IO Basics', durationMin: 22, isPreview: false },
+          { title: 'Protocolo HTTP vs WebSocket', durationMin: 15, isPreview: true },
+          { title: 'Fundamentos de Socket.IO', durationMin: 22, isPreview: false },
         ],
       },
     ],
@@ -339,9 +339,9 @@ export const mockCourses: Course[] = [
   {
     id: '13',
     slug: 'go-kubernetes',
-    title: 'Go & Kubernetes: Cloud-Native Development',
+    title: 'Go y Kubernetes: Desarrollo Cloud-Native',
     description:
-      'Deploy Go microservices on Kubernetes. Helm charts, service mesh with Istio, observability, and CI/CD pipelines.',
+      'Despliega microservicios Go en Kubernetes. Helm charts, service mesh con Istio, observabilidad y pipelines de CI/CD.',
     instructor: 'Nina Volkov',
     category: 'go',
     level: 'advanced',
@@ -353,10 +353,10 @@ export const mockCourses: Course[] = [
     tags: ['kubernetes', 'helm', 'istio', 'ci/cd'],
     curriculum: [
       {
-        title: 'Kubernetes Basics',
+        title: 'Bases de Kubernetes',
         lessons: [
-          { title: 'Pods, Services, Deployments', durationMin: 30, isPreview: true },
-          { title: 'ConfigMaps and Secrets', durationMin: 22, isPreview: false },
+          { title: 'Pods, Services y Deployments', durationMin: 30, isPreview: true },
+          { title: 'ConfigMaps y Secrets', durationMin: 22, isPreview: false },
         ],
       },
     ],
@@ -366,23 +366,23 @@ export const mockCourses: Course[] = [
 export const testimonials: Testimonial[] = [
   {
     id: '1',
-    name: 'Jordan Mills',
-    role: 'Senior Frontend Engineer at Stripe',
-    text: 'The React 19 course completely changed how I think about component architecture. The server components section alone was worth the price.',
-    course: 'React 19 — The Complete Modern Guide',
+    name: 'Jordán Millán',
+    role: 'Ingeniero Frontend Senior en Stripe',
+    text: 'El curso de React 19 cambió completamente cómo pienso en la arquitectura de componentes. Solo la sección de server components ya valió el precio.',
+    course: 'React 19 — Guía Completa y Moderna',
   },
   {
     id: '2',
     name: 'Priya Nair',
-    role: 'Full-Stack Developer at Vercel',
-    text: 'I went from knowing nothing about Go to shipping a production API in 8 weeks. The concurrency lessons are incredibly well-structured.',
-    course: 'Go: Systems Programming & High Performance APIs',
+    role: 'Desarrolladora Full-Stack en Vercel',
+    text: 'Pasé de no saber nada de Go a publicar una API en producción en 8 semanas. Las lecciones de concurrencia están increíblemente bien estructuradas.',
+    course: 'Go: Programación de Sistemas y APIs de Alto Rendimiento',
   },
   {
     id: '3',
-    name: 'Alex Thornton',
-    role: 'Backend Engineer at Shopify',
-    text: "NestJS microservices course is the most practical course I've taken. Real-world examples, no fluff. Deployed my first microservice architecture in a month.",
-    course: 'NestJS: Microservices & Clean Architecture',
+    name: 'Alejandro Torres',
+    role: 'Ingeniero Backend en Shopify',
+    text: 'El curso de microservicios con NestJS es lo más práctico que he tomado. Ejemplos del mundo real, sin relleno. Desplegué mi primera arquitectura de microservicios en un mes.',
+    course: 'NestJS: Microservicios y Arquitectura Limpia',
   },
 ];

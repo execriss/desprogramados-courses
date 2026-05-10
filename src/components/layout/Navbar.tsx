@@ -8,8 +8,8 @@ import { Button } from '../ui/Button';
 import '../../styles/components/navbar.css';
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/courses', label: 'Catalog' },
+  { to: '/', label: 'Inicio' },
+  { to: '/courses', label: 'Catálogo' },
 ];
 
 export function Navbar() {
@@ -30,7 +30,7 @@ export function Navbar() {
             Learn<span>Craft</span>
           </Link>
 
-          <nav className="navbar__nav" aria-label="Main navigation">
+          <nav className="navbar__nav" aria-label="Navegación principal">
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}
@@ -47,16 +47,16 @@ export function Navbar() {
 
           <div className="navbar__actions">
             <Link to="/login">
-              <Button variant="ghost" size="sm">Sign in</Button>
+              <Button variant="ghost" size="sm">Entrar</Button>
             </Link>
             <Link to="/register">
-              <Button variant="primary" size="sm">Get started</Button>
+              <Button variant="primary" size="sm">Empezar gratis</Button>
             </Link>
 
             <button
               className="navbar__theme-btn"
               onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              aria-label={`Cambiar a modo ${theme === 'dark' ? 'claro' : 'oscuro'}`}
             >
               {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>
@@ -64,7 +64,7 @@ export function Navbar() {
             <button
               className="navbar__hamburger"
               onClick={() => setMenuOpen(true)}
-              aria-label="Open menu"
+              aria-label="Abrir menú"
             >
               <Menu size={18} />
             </button>
@@ -74,7 +74,7 @@ export function Navbar() {
 
       <AnimatePresence>
         {menuOpen && (
-          <div className="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+          <div className="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
             <motion.div
               className="mobile-menu__backdrop"
               initial={{ opacity: 0 }}
@@ -90,11 +90,13 @@ export function Navbar() {
               transition={{ type: 'tween', duration: 0.25 }}
             >
               <div className="mobile-menu__header">
-                <span className="navbar__logo">Learn<span>Craft</span></span>
+                <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
+                  Learn<span>Craft</span>
+                </Link>
                 <button
                   className="mobile-menu__close"
                   onClick={() => setMenuOpen(false)}
-                  aria-label="Close menu"
+                  aria-label="Cerrar menú"
                 >
                   <X size={18} />
                 </button>
@@ -117,23 +119,22 @@ export function Navbar() {
               <div className="mobile-menu__divider" />
 
               <Link to="/login" onClick={() => setMenuOpen(false)}>
-                <Button variant="secondary" size="md" fullWidth>Sign in</Button>
+                <Button variant="secondary" size="md" fullWidth>Entrar</Button>
               </Link>
               <Link to="/register" onClick={() => setMenuOpen(false)}>
-                <Button variant="primary" size="md" fullWidth>Get started</Button>
+                <Button variant="primary" size="md" fullWidth>Empezar gratis</Button>
               </Link>
 
               <div className="mobile-menu__divider" />
 
               <button
-                className="navbar__theme-btn"
+                className="navbar__theme-btn mobile-menu__theme-row"
                 onClick={toggleTheme}
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                style={{ width: '100%', borderRadius: '8px', padding: '10px', justifyContent: 'center' }}
+                aria-label={`Cambiar a modo ${theme === 'dark' ? 'claro' : 'oscuro'}`}
               >
                 {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-                <span style={{ marginLeft: '8px', fontSize: '0.9375rem', color: 'var(--color-text-secondary)' }}>
-                  {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+                <span className="mobile-menu__theme-label">
+                  {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
                 </span>
               </button>
             </motion.div>

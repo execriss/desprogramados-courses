@@ -22,17 +22,14 @@ export function HomePage() {
 
         <section className="section section--alt">
           <div className="section__inner">
-            <div
-              className="section__header"
-              style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '16px' }}
-            >
+            <div className="section__header section__header--row">
               <div>
-                <p className="section__eyebrow">Featured Courses</p>
-                <h2 className="section__title">Hand-picked for you</h2>
+                <p className="section__eyebrow">Cursos destacados</p>
+                <h2 className="section__title">Seleccionados para ti</h2>
               </div>
               <Link to="/courses">
                 <Button variant="ghost" size="sm">
-                  View all <ArrowRight size={14} />
+                  Ver todos <ArrowRight size={14} />
                 </Button>
               </Link>
             </div>

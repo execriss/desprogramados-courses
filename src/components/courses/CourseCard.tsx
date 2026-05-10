@@ -21,6 +21,12 @@ const CATEGORY_LABELS: Record<Course['category'], string> = {
   java: 'Java',
 };
 
+const LEVEL_LABELS: Record<Course['level'], string> = {
+  beginner: 'Principiante',
+  intermediate: 'Intermedio',
+  advanced: 'Avanzado',
+};
+
 export function CourseCard({ course }: CourseCardProps) {
   return (
     <motion.article
@@ -28,13 +34,13 @@ export function CourseCard({ course }: CourseCardProps) {
       whileHover={{ scale: 1.01 }}
       transition={{ duration: 0.15 }}
     >
-      <Link to={`/courses/${course.slug}`} style={{ display: 'contents' }}>
+      <Link to={`/courses/${course.slug}`} className="course-card__link">
         <div className="course-card__thumbnail">
           {course.thumbnail ? (
             <img src={course.thumbnail} alt={course.title} loading="lazy" />
           ) : (
             <div className="course-card__thumbnail-placeholder">
-              <BookOpen size={40} className="course-card__thumbnail-icon" />
+              <BookOpen size={36} className="course-card__thumbnail-icon" />
             </div>
           )}
         </div>
@@ -42,7 +48,7 @@ export function CourseCard({ course }: CourseCardProps) {
         <div className="course-card__body">
           <div className="course-card__meta">
             <Badge variant={course.category}>{CATEGORY_LABELS[course.category]}</Badge>
-            <Badge variant={course.level}>{course.level}</Badge>
+            <Badge variant={course.level}>{LEVEL_LABELS[course.level]}</Badge>
           </div>
 
           <h3 className="course-card__title">{course.title}</h3>
@@ -57,7 +63,7 @@ export function CourseCard({ course }: CourseCardProps) {
                 ({formatStudentCount(course.studentsCount)})
               </span>
             </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <span className="course-card__stat-item">
               <Clock size={13} />
               {formatDuration(course.durationHours)}
             </span>
@@ -68,7 +74,7 @@ export function CourseCard({ course }: CourseCardProps) {
               {formatPrice(course.price)}
             </span>
             <span className="course-card__duration">
-              {course.lessonsCount} lessons
+              {course.lessonsCount} lecciones
             </span>
           </div>
         </div>

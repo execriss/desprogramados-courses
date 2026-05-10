@@ -14,11 +14,11 @@ export function RegisterPage() {
 
   const validate = () => {
     const errs: Record<string, string> = {};
-    if (!name.trim()) errs.name = 'Name is required';
-    if (!email) errs.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(email)) errs.email = 'Enter a valid email';
-    if (!password) errs.password = 'Password is required';
-    else if (password.length < 8) errs.password = 'Minimum 8 characters';
+    if (!name.trim()) errs.name = 'El nombre es obligatorio';
+    if (!email) errs.email = 'El email es obligatorio';
+    else if (!/\S+@\S+\.\S+/.test(email)) errs.email = 'Introduce un email válido';
+    if (!password) errs.password = 'La contraseña es obligatoria';
+    else if (password.length < 8) errs.password = 'Mínimo 8 caracteres';
     return errs;
   };
 
@@ -41,17 +41,17 @@ export function RegisterPage() {
           transition={{ duration: 0.35 }}
         >
           <p className="auth-card__logo">Learn<span>Craft</span></p>
-          <h1 className="auth-card__title">Create your account</h1>
-          <p className="auth-card__subtitle">Start learning for free today</p>
+          <h1 className="auth-card__title">Crea tu cuenta</h1>
+          <p className="auth-card__subtitle">Empieza a aprender gratis hoy</p>
 
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <div className="form-field">
-              <label className="form-field__label" htmlFor="name">Full name</label>
+              <label className="form-field__label" htmlFor="name">Nombre completo</label>
               <input
                 id="name"
                 type="text"
                 className={`form-field__input${errors.name ? ' form-field__input--error' : ''}`}
-                placeholder="Jane Smith"
+                placeholder="Juan García"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 autoComplete="name"
@@ -65,7 +65,7 @@ export function RegisterPage() {
                 id="email"
                 type="email"
                 className={`form-field__input${errors.email ? ' form-field__input--error' : ''}`}
-                placeholder="you@example.com"
+                placeholder="tu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
@@ -74,12 +74,12 @@ export function RegisterPage() {
             </div>
 
             <div className="form-field">
-              <label className="form-field__label" htmlFor="password">Password</label>
+              <label className="form-field__label" htmlFor="password">Contraseña</label>
               <input
                 id="password"
                 type="password"
                 className={`form-field__input${errors.password ? ' form-field__input--error' : ''}`}
-                placeholder="Min. 8 characters"
+                placeholder="Mínimo 8 caracteres"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="new-password"
@@ -88,13 +88,13 @@ export function RegisterPage() {
             </div>
 
             <Button type="submit" variant="primary" size="md" fullWidth loading={loading}>
-              Create account
+              Crear cuenta
             </Button>
           </form>
 
           <p className="auth-footer">
-            Already have an account?{' '}
-            <Link to="/login" className="auth-footer__link">Sign in</Link>
+            ¿Ya tienes cuenta?{' '}
+            <Link to="/login" className="auth-footer__link">Iniciar sesión</Link>
           </p>
         </motion.div>
       </main>

@@ -14,7 +14,14 @@
 }
 
 .section__header {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
+}
+
+.section__header--row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .section__eyebrow {
@@ -23,12 +30,12 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-accent);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .section__title {
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.625rem, 3vw, 2.375rem);
   font-weight: 600;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
@@ -40,25 +47,25 @@
   color: var(--color-text-secondary);
   margin-top: 10px;
   line-height: 1.6;
-  max-width: 560px;
+  max-width: 540px;
 }
 
 /* ─── Learning Paths ─── */
 .learning-paths__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .path-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
   cursor: pointer;
   transition: box-shadow var(--transition-base), border-color var(--transition-base),
     transform var(--transition-fast);
@@ -72,13 +79,13 @@
 }
 
 .path-card__icon {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.375rem;
 }
 
 .path-card__name {
@@ -114,6 +121,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-block__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
 }
 
 .feature-block__title {
@@ -126,21 +141,21 @@
 .feature-block__text {
   font-size: 0.9375rem;
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* ─── Testimonials ─── */
 .testimonials__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 .testimonial-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 12px;
-  padding: 28px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -196,22 +211,24 @@
 
 .cta-banner__title {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
   font-weight: 700;
   color: #FFFFFF;
   letter-spacing: -0.02em;
   max-width: 480px;
+  line-height: 1.25;
 }
 
 .cta-banner__subtitle {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.8);
+  font-size: 0.9375rem;
+  color: rgba(255,255,255,0.75);
   margin-top: 8px;
 }
 
 .cta-banner__action .button--primary {
   background-color: #FFFFFF;
   color: var(--color-accent);
+  white-space: nowrap;
 }
 
 .cta-banner__action .button--primary:hover {
@@ -222,34 +239,112 @@
 @media (max-width: 1024px) {
   .learning-paths__grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
   }
 
   .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .testimonials__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 56px 0;
+  }
+
+  .section__inner {
+    padding: 0 20px;
+  }
+
+  .section__header--row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
   .learning-paths__grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .feature-block {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .feature-block__icon {
+    flex-shrink: 0;
+  }
+
+  .feature-block__content {
+    flex: 1;
   }
 
   .testimonials__grid {
     grid-template-columns: 1fr;
   }
 
+  .cta-banner {
+    padding: 48px 0;
+  }
+
   .cta-banner__inner {
     flex-direction: column;
     text-align: center;
+    padding: 0 20px;
+  }
+
+  .cta-banner__title {
+    max-width: 100%;
+  }
+
+  .cta-banner__action .button {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-@media (max-width: 640px) {
-  .features__grid {
-    grid-template-columns: 1fr;
+@media (max-width: 480px) {
+  .section {
+    padding: 44px 0;
   }
 
-  .section {
-    padding: 56px 0;
+  .section__inner {
+    padding: 0 16px;
+  }
+
+  .learning-paths__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .path-card {
+    padding: 14px 12px;
+    gap: 8px;
+  }
+
+  .path-card__icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.125rem;
+  }
+
+  .path-card__name {
+    font-size: 0.875rem;
+  }
+
+  .path-card__count {
+    font-size: 0.75rem;
   }
 }

@@ -52,6 +52,18 @@
   padding: 0;
 }
 
+/* Previene overflow horizontal en móvil */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Texto más legible en móviles pequeños */
+@media (max-width: 360px) {
+  html {
+    font-size: 15px;
+  }
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;

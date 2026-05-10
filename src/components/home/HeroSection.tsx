@@ -15,7 +15,7 @@ const fadeUp = {
 
 export function HeroSection() {
   return (
-    <section className="hero" aria-label="Hero">
+    <section className="hero" aria-label="Inicio">
       <div className="hero__inner">
         <div className="hero__content">
           <motion.div
@@ -26,7 +26,7 @@ export function HeroSection() {
             custom={0}
           >
             <Star size={13} />
-            Trusted by 60,000+ developers worldwide
+            Más de 60.000 desarrolladores confían en nosotros
           </motion.div>
 
           <motion.h1
@@ -36,7 +36,7 @@ export function HeroSection() {
             animate="visible"
             custom={0.1}
           >
-            Master modern web development — at your pace
+            Domina el desarrollo web moderno — a tu ritmo
           </motion.h1>
 
           <motion.p
@@ -46,7 +46,7 @@ export function HeroSection() {
             animate="visible"
             custom={0.2}
           >
-            Hands-on courses in React, Node, Python, Go, and more — crafted by engineers who ship real products.
+            Cursos prácticos de React, Node, Python, Go y mucho más — creados por ingenieros que trabajan en productos reales.
           </motion.p>
 
           <motion.div
@@ -58,12 +58,12 @@ export function HeroSection() {
           >
             <Link to="/courses">
               <Button variant="primary" size="lg">
-                Browse courses
+                Ver cursos
                 <ArrowRight size={18} />
               </Button>
             </Link>
             <Link to="/courses">
-              <Button variant="secondary" size="lg">View free previews</Button>
+              <Button variant="secondary" size="lg">Ver previsualizaciones gratis</Button>
             </Link>
           </motion.div>
 
@@ -76,17 +76,17 @@ export function HeroSection() {
           >
             <div className="hero__stat">
               <span className="hero__stat-value">60k+</span>
-              <span className="hero__stat-label">Students enrolled</span>
+              <span className="hero__stat-label">Estudiantes inscritos</span>
             </div>
             <div className="hero__stat-divider" />
             <div className="hero__stat">
               <span className="hero__stat-value">13</span>
-              <span className="hero__stat-label">Expert instructors</span>
+              <span className="hero__stat-label">Instructores expertos</span>
             </div>
             <div className="hero__stat-divider" />
             <div className="hero__stat">
               <span className="hero__stat-value">4.8</span>
-              <span className="hero__stat-label">Average rating</span>
+              <span className="hero__stat-label">Valoración media</span>
             </div>
           </motion.div>
         </div>

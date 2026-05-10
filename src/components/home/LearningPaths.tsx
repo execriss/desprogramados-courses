@@ -18,9 +18,9 @@ export function LearningPaths() {
     <section className="section">
       <div className="section__inner">
         <div className="section__header">
-          <p className="section__eyebrow">Learning Paths</p>
-          <h2 className="section__title">Choose your technology</h2>
-          <p className="section__subtitle">Focused curricula for every stack, from beginner to advanced.</p>
+          <p className="section__eyebrow">Rutas de aprendizaje</p>
+          <h2 className="section__title">Elige tu tecnología</h2>
+          <p className="section__subtitle">Currículos enfocados para cada stack, desde principiante hasta avanzado.</p>
         </div>
 
         <div className="learning-paths__grid">
@@ -44,7 +44,7 @@ export function LearningPaths() {
                   {path.icon}
                 </div>
                 <p className="path-card__name">{path.name}</p>
-                <p className="path-card__count">{path.count} course{path.count !== 1 ? 's' : ''}</p>
+                <p className="path-card__count">{path.count} curso{path.count !== 1 ? 's' : ''}</p>
               </Link>
             </motion.div>
           ))}

@@ -16,16 +16,16 @@ export function CtaBanner() {
       <div className="cta-banner__inner">
         <div>
           <h2 className="cta-banner__title">
-            Start your first course today — free previews on every track
+            Empieza tu primer curso hoy — previsualizaciones gratis en cada ruta
           </h2>
           <p className="cta-banner__subtitle">
-            No credit card required. Cancel anytime.
+            Sin tarjeta de crédito. Cancela cuando quieras.
           </p>
         </div>
         <div className="cta-banner__action">
           <Link to="/register">
             <Button variant="primary" size="lg">
-              Get started free
+              Empieza gratis
               <ArrowRight size={18} />
             </Button>
           </Link>

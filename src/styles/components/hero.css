@@ -1,5 +1,5 @@
 .hero {
-  padding: 80px 0 100px;
+  padding: 72px 0 88px;
   position: relative;
   overflow: hidden;
 }
@@ -18,10 +18,10 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--color-accent);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   padding: 6px 14px;
   background-color: var(--color-accent-subtle);
   border-radius: 100px;
@@ -29,7 +29,7 @@
 
 .hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.125rem, 6vw, 3.75rem);
   font-weight: 700;
   color: var(--color-text-primary);
   line-height: 1.1;
@@ -38,11 +38,11 @@
 }
 
 .hero__subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2.5vw, 1.1875rem);
   color: var(--color-text-secondary);
-  line-height: 1.6;
-  margin-bottom: 36px;
-  max-width: 560px;
+  line-height: 1.65;
+  margin-bottom: 32px;
+  max-width: 540px;
 }
 
 .hero__actions {
@@ -50,13 +50,14 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 44px;
 }
 
 .hero__social-proof {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .hero__stat {
@@ -65,7 +66,7 @@
 }
 
 .hero__stat-value {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--color-text-primary);
   font-family: var(--font-heading);
@@ -75,21 +76,51 @@
 .hero__stat-label {
   font-size: 0.8125rem;
   color: var(--color-text-muted);
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .hero__stat-divider {
   width: 1px;
-  height: 32px;
+  height: 28px;
   background-color: var(--color-border);
+  flex-shrink: 0;
 }
 
-@media (max-width: 640px) {
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
   .hero {
-    padding: 60px 0 72px;
+    padding: 56px 0 68px;
+  }
+
+  .hero__inner {
+    padding: 0 20px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__actions .button {
+    width: 100%;
+    justify-content: center;
   }
 
   .hero__social-proof {
-    gap: 16px;
+    gap: 14px;
+  }
+
+  .hero__stat-divider {
+    height: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero {
+    padding: 48px 0 56px;
+  }
+
+  .hero__inner {
+    padding: 0 16px;
   }
 }
