@@ -3,7 +3,6 @@ import { HeroSection } from '../components/home/HeroSection';
 import { LearningPaths } from '../components/home/LearningPaths';
 import { FeaturesSection } from '../components/home/FeaturesSection';
 import { Testimonials } from '../components/home/Testimonials';
-import { CtaBanner } from '../components/home/CtaBanner';
 import { CourseGrid } from '../components/courses/CourseGrid';
 import { mockCourses } from '../data/mockCourses';
 import { Link } from 'react-router-dom';
@@ -39,7 +38,6 @@ export function HomePage() {
 
         <FeaturesSection />
         <Testimonials />
-        <CtaBanner />
       </main>
     </PageWrapper>
   );
