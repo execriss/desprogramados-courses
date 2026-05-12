@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
 import { MetaTags } from '../components/seo/MetaTags';
 import { Button } from '../components/ui/Button';
+import { useAuthStore } from '../store/authStore';
 import '../styles/components/auth.css';
 
 export function RegisterPage() {
@@ -12,6 +13,8 @@ export function RegisterPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const login = useAuthStore((s) => s.login);
+  const navigate = useNavigate();
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -29,7 +32,10 @@ export function RegisterPage() {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
-    setTimeout(() => setLoading(false), 1500);
+    setTimeout(() => {
+      login({ name, email });
+      navigate('/dashboard');
+    }, 800);
   };
 
   return (

@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { Sun, Moon, Menu, X, LogOut } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from '../../hooks/useTheme';
 import { useScrollShadow } from '../../hooks/useScrollShadow';
 import { Button } from '../ui/Button';
+import { useAuthStore } from '../../store/authStore';
 import '../../styles/components/navbar.css';
 
 const navLinks = [
@@ -16,6 +17,21 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const scrolled = useScrollShadow();
   const [menuOpen, setMenuOpen] = useState(false);
+  const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
+  const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
+  const navigate = useNavigate();
+  const initials = user?.name
+    ?.split(' ')
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase() ?? '?';
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <>
@@ -46,12 +62,38 @@ export function Navbar() {
           </nav>
 
           <div className="navbar__actions">
-            <Link to="/login">
-              <Button variant="ghost" size="sm">Entrar</Button>
-            </Link>
-            <Link to="/register">
-              <Button variant="primary" size="sm">Empezar gratis</Button>
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    `navbar__link${isActive ? ' navbar__link--active' : ''}`
+                  }
+                >
+                  Mi aprendizaje
+                </NavLink>
+                <div className="navbar__avatar" title={user?.name ?? ''}>
+                  {initials}
+                </div>
+                <button
+                  className="navbar__theme-btn"
+                  onClick={handleLogout}
+                  aria-label="Cerrar sesión"
+                  title="Cerrar sesión"
+                >
+                  <LogOut size={16} />
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="ghost" size="sm">Entrar</Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="primary" size="sm">Empezar gratis</Button>
+                </Link>
+              </>
+            )}
 
             <button
               className="navbar__theme-btn"
@@ -118,12 +160,25 @@ export function Navbar() {
 
               <div className="mobile-menu__divider" />
 
-              <Link to="/login" onClick={() => setMenuOpen(false)}>
-                <Button variant="secondary" size="md" fullWidth>Entrar</Button>
-              </Link>
-              <Link to="/register" onClick={() => setMenuOpen(false)}>
-                <Button variant="primary" size="md" fullWidth>Empezar gratis</Button>
-              </Link>
+              {isLoggedIn ? (
+                <>
+                  <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+                    <Button variant="secondary" size="md" fullWidth>Mi aprendizaje</Button>
+                  </Link>
+                  <Button variant="ghost" size="md" fullWidth onClick={() => { handleLogout(); setMenuOpen(false); }}>
+                    Cerrar sesión
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setMenuOpen(false)}>
+                    <Button variant="secondary" size="md" fullWidth>Entrar</Button>
+                  </Link>
+                  <Link to="/register" onClick={() => setMenuOpen(false)}>
+                    <Button variant="primary" size="md" fullWidth>Empezar gratis</Button>
+                  </Link>
+                </>
+              )}
 
               <div className="mobile-menu__divider" />
 
