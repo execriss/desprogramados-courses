@@ -7,7 +7,7 @@ export const mockCourses: Course[] = [
     title: 'React en Producción: Patrones y Arquitectura Real',
     description:
       'Aprende los patrones de componentes, estrategias de caching y arquitecturas que usan los equipos senior. Server Components, concurrent features y flujos de trabajo reales en startups tech.',
-    instructor: 'Sara Montoya',
+    instructorId: 'inst-1',
     category: 'react',
     level: 'intermediate',
     price: 89,
@@ -58,7 +58,7 @@ export const mockCourses: Course[] = [
     title: 'Node.js como en Producción: APIs que Sobreviven al Tráfico Real',
     description:
       'Diseña y despliega APIs REST como lo hacen los backends de Stripe y Shopify. Rate limiting, caché con Redis, observabilidad, autenticación robusta y deploy en AWS desde el primer día.',
-    instructor: 'Marcos Vidal',
+    instructorId: 'inst-2',
     category: 'node',
     level: 'intermediate',
     price: 79,
@@ -99,7 +99,7 @@ export const mockCourses: Course[] = [
     title: 'Python en Equipos de Datos: Del Análisis al Pipeline Profesional',
     description:
       'Cómo trabajan realmente los data engineers en empresas. Pandas, validación de datos con Pydantic, pipelines reproducibles con Prefect y primeros pasos con modelos en producción.',
-    instructor: 'Valentina Cruz',
+    instructorId: 'inst-3',
     category: 'python',
     level: 'beginner',
     price: 69,
@@ -141,7 +141,7 @@ export const mockCourses: Course[] = [
     title: 'Vue 3 en Producción: Composition API y Arquitectura Escalable',
     description:
       'Vue 3 como lo usan los equipos profesionales. Composition API a fondo, gestión de estado con Pinia, testing con Vitest y patrones de arquitectura que escalan sin volverse inmanejables.',
-    instructor: 'Leonardo Ruiz',
+    instructorId: 'inst-4',
     category: 'vue',
     level: 'intermediate',
     price: 74,
@@ -166,7 +166,7 @@ export const mockCourses: Course[] = [
     title: 'Angular Enterprise: Signals, Rendimiento y Arquitectura que Escala',
     description:
       'La arquitectura Angular de aplicaciones que manejan millones de usuarios. Signals, lazy loading estratégico, RxJS avanzado sin antipatrones y testing en pipelines de CI/CD reales.',
-    instructor: 'Emma Johansen',
+    instructorId: 'inst-5',
     category: 'angular',
     level: 'advanced',
     price: 94,
@@ -191,7 +191,7 @@ export const mockCourses: Course[] = [
     title: 'NestJS: Microservicios como se Hacen en la Industria',
     description:
       'Diseña sistemas distribuidos con NestJS tal como lo hacen los equipos de backend senior. RabbitMQ, transacciones distribuidas, observabilidad con OpenTelemetry y deploy en Kubernetes.',
-    instructor: 'David Kang',
+    instructorId: 'inst-6',
     category: 'nest',
     level: 'advanced',
     price: 99,
@@ -216,7 +216,7 @@ export const mockCourses: Course[] = [
     title: 'Go en Producción: Concurrencia, Performance y APIs de Alta Carga',
     description:
       'Go como herramienta de producción real — concurrencia sin carreras de datos, profiling, optimización de memoria y construcción de servicios que manejan miles de requests por segundo.',
-    instructor: 'Nina Volkov',
+    instructorId: 'inst-7',
     category: 'go',
     level: 'intermediate',
     price: 84,
@@ -241,7 +241,7 @@ export const mockCourses: Course[] = [
     title: 'Spring Boot en Producción: Seguridad, Caché y Deploy en AWS',
     description:
       'Spring Boot de los proyectos enterprise reales. OAuth2 y JWT bien implementados, optimización de queries JPA, caché con Redis, monitoreo con Actuator y deploy en AWS desde cero.',
-    instructor: 'Carlos Romero',
+    instructorId: 'inst-8',
     category: 'java',
     level: 'beginner',
     price: 79,
@@ -266,7 +266,7 @@ export const mockCourses: Course[] = [
     title: 'React Native en Producción: Apps Móviles que se Publican y Mantienen',
     description:
       'Construye apps móviles listas para la App Store y Google Play. Las mismas prácticas que usan equipos de producto: CI/CD con EAS, OTA updates, testing automatizado y manejo de versiones.',
-    instructor: 'Sara Montoya',
+    instructorId: 'inst-1',
     category: 'react',
     level: 'intermediate',
     price: 84,
@@ -291,7 +291,7 @@ export const mockCourses: Course[] = [
     title: 'FastAPI en Producción: APIs Async con Python como en las Empresas',
     description:
       'FastAPI como lo usan equipos de backend reales. Async sin errores sutiles, autenticación OAuth2, rate limiting, versionado de API y deploy en AWS Lambda con costos mínimos.',
-    instructor: 'Valentina Cruz',
+    instructorId: 'inst-3',
     category: 'python',
     level: 'intermediate',
     price: 72,
@@ -316,7 +316,7 @@ export const mockCourses: Course[] = [
     title: 'Nuxt 3 en Producción: Full-Stack con SSR y Edge Functions',
     description:
       'Nuxt 3 como lo usan equipos de producto. SSR estratégico vs SSG vs ISR según el caso de uso, server routes como microservicios, Prisma en producción y deploy en Vercel Edge.',
-    instructor: 'Leonardo Ruiz',
+    instructorId: 'inst-4',
     category: 'vue',
     level: 'advanced',
     price: 89,
@@ -341,7 +341,7 @@ export const mockCourses: Course[] = [
     title: 'WebSockets en Producción: Cómo lo Hacen Figma, Notion y Linear',
     description:
       'La arquitectura real detrás de los features colaborativos que más usas. Socket.IO con Redis Adapter, horizontal scaling, conflict resolution y las decisiones que toman los equipos de plataforma.',
-    instructor: 'Marcos Vidal',
+    instructorId: 'inst-2',
     category: 'node',
     level: 'intermediate',
     price: 76,
@@ -366,7 +366,7 @@ export const mockCourses: Course[] = [
     title: 'Go y Kubernetes: Microservicios Cloud-Native como los Equipos SRE',
     description:
       'Despliega microservicios Go como lo hacen los equipos de plataforma. Helm charts, service mesh con Istio, observabilidad con Prometheus y Grafana, y pipelines de CD con ArgoCD.',
-    instructor: 'Nina Volkov',
+    instructorId: 'inst-7',
     category: 'go',
     level: 'advanced',
     price: 104,

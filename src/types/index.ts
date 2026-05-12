@@ -9,12 +9,26 @@ export interface Section {
   lessons: Lesson[];
 }
 
+export interface Instructor {
+  id: string;
+  slug: string;
+  name: string;
+  title: string;
+  shortBio: string;
+  fullBio: string;
+  stats: {
+    coursesCount: number;
+    studentsCount: number;
+    rating: number;
+  };
+}
+
 export interface Course {
   id: string;
   slug: string;
   title: string;
   description: string;
-  instructor: string;
+  instructorId: string;
   category: 'react' | 'node' | 'python' | 'vue' | 'angular' | 'nest' | 'go' | 'java';
   level: 'beginner' | 'intermediate' | 'advanced';
   price: number;

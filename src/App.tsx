@@ -11,6 +11,7 @@ import { RegisterPage } from './pages/RegisterPage';
 import { CoursePlayerPage } from './pages/CoursePlayerPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { InstructorPage } from './pages/InstructorPage';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 function AnimatedRoutes() {
@@ -22,6 +23,7 @@ function AnimatedRoutes() {
         <Route path="/courses" element={<CatalogPage />} />
         <Route path="/courses/:slug" element={<CourseDetailPage />} />
         <Route path="/courses/:slug/play" element={<CoursePlayerPage />} />
+        <Route path="/instructors/:slug" element={<InstructorPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route

@@ -8,6 +8,7 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { CourseDetailSkeleton } from '../components/courses/CourseDetailSkeleton';
 import { useCourse } from '../hooks/useCourse';
+import { getInstructorById } from '../data/mockInstructors';
 import { formatPrice, formatDuration, formatStudentCount } from '../utils/formatters';
 import type { Course } from '../types';
 import '../styles/components/course-detail.css';
@@ -63,10 +64,9 @@ export function CourseDetailPage() {
 
   if (!course) return <Navigate to="/courses" replace />;
 
-  const instructorInitials = course.instructor
-    .split(' ')
-    .map((n) => n[0])
-    .join('');
+  const instructor = getInstructorById(course.instructorId);
+  const instructorName = instructor?.name ?? 'Instructor';
+  const instructorInitials = instructorName.split(' ').map((n) => n[0]).join('');
 
   return (
     <PageWrapper>
@@ -219,10 +219,17 @@ export function CourseDetailPage() {
                   {instructorInitials}
                 </div>
                 <div>
-                  <p className="instructor-card__name">{course.instructor}</p>
+                  <Link
+                    to={`/instructors/${instructor?.slug ?? ''}`}
+                    className="instructor-card__name instructor-card__name--link"
+                  >
+                    {instructorName}
+                  </Link>
+                  {instructor && (
+                    <p className="instructor-card__title">{instructor.title}</p>
+                  )}
                   <p className="instructor-card__bio">
-                    Ingeniero de software senior con más de 10 años de experiencia construyendo sistemas escalables.
-                    Apasionado por enseñar habilidades prácticas y de nivel producción a la próxima generación de desarrolladores.
+                    {instructor?.shortBio ?? 'Experto con experiencia real en producción.'}
                   </p>
                 </div>
               </div>

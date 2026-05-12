@@ -290,7 +290,23 @@
   font-size: 1.0625rem;
   font-weight: 600;
   color: var(--color-text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.instructor-card__name--link {
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.instructor-card__name--link:hover {
+  color: var(--color-accent);
+}
+
+.instructor-card__title {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
 }
 
 .instructor-card__bio {

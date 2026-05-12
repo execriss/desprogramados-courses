@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { mockCourses } from '../data/mockCourses';
+import { getInstructorById } from '../data/mockInstructors';
 import type { Course } from '../types';
 
 type Category = Course['category'] | 'all';
@@ -19,10 +20,11 @@ export function useCourses() {
   const courses = useMemo(() => {
     if (isLoading) return [];
     return mockCourses.filter((c) => {
+      const instructorName = getInstructorById(c.instructorId)?.name ?? '';
       const matchesSearch =
         !search ||
         c.title.toLowerCase().includes(search.toLowerCase()) ||
-        c.instructor.toLowerCase().includes(search.toLowerCase()) ||
+        instructorName.toLowerCase().includes(search.toLowerCase()) ||
         c.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
       const matchesCategory = category === 'all' || c.category === category;
       const matchesLevel = level === 'all' || c.level === level;
