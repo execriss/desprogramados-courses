@@ -23,7 +23,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     const session = await authService.getSession();
     set({ session, user: session?.user ?? null, isLoggedIn: !!session, isLoading: false });
 
-    authService.onAuthStateChange((_event, session) => {
+    authService.onAuthStateChange(async (_event, session) => {
       set({ session, user: session?.user ?? null, isLoggedIn: !!session });
     });
   },

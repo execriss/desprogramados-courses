@@ -67,6 +67,7 @@ export async function getCourseProgress(courseId: string): Promise<{
   const totalCount = allLessons.length;
   const percent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
-  const lastCompleted = allLessons.filter((l) => completedIds.has(l.id)).at(-1);
+  const filtered = allLessons.filter((l) => completedIds.has(l.id));
+  const lastCompleted = filtered[filtered.length - 1];
   return { completedCount, totalCount, percent, lastCompletedLessonTitle: lastCompleted?.title ?? '' };
 }

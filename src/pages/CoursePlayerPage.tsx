@@ -1,30 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, CheckCircle2, Circle, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { PageWrapper } from '../components/layout/PageWrapper';
 import { MetaTags } from '../components/seo/MetaTags';
 import { Button } from '../components/ui/Button';
-import { mockCourses } from '../data/mockCourses';
+import { useCourse } from '../hooks/useCourse';
+import { enrollFree } from '../services/enrollmentService';
+import { getCompletedLessonIds, markLessonComplete } from '../services/progressService';
 import '../styles/components/player.css';
 
 export function CoursePlayerPage() {
   const { slug } = useParams<{ slug: string }>();
-  const course = mockCourses.find((c) => c.slug === slug);
+  const { course, isLoading } = useCourse(slug);
+  const queryClient = useQueryClient();
 
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const [activeLessonIdx, setActiveLessonIdx] = useState(0);
-  const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
   const [openSections, setOpenSections] = useState<Set<number>>(new Set([0]));
+  const [isMarking, setIsMarking] = useState(false);
 
+  useEffect(() => {
+    if (course?.id) {
+      enrollFree(course.id).catch(() => {});
+    }
+  }, [course?.id]);
+
+  const { data: completedLessons = new Set<string>() } = useQuery({
+    queryKey: ['lesson-progress', course?.id],
+    queryFn: () => getCompletedLessonIds(course!.id),
+    enabled: !!course?.id,
+  });
+
+  if (isLoading) return null;
   if (!course) return <Navigate to="/courses" replace />;
 
   const allLessons = course.curriculum.flatMap((section, si) =>
-    section.lessons.map((_l, li) => ({ sectionIdx: si, lessonIdx: li }))
+    section.lessons.map((l, li) => ({ sectionIdx: si, lessonIdx: li, lesson: l }))
   );
 
-  const lKey = (si: number, li: number) => `${si}-${li}`;
-  const activeKey = lKey(activeSectionIdx, activeLessonIdx);
+  const activeKey = `${activeSectionIdx}-${activeLessonIdx}`;
   const activeLesson = course.curriculum[activeSectionIdx]?.lessons[activeLessonIdx];
   const activeSection = course.curriculum[activeSectionIdx];
 
@@ -33,7 +49,7 @@ export function CoursePlayerPage() {
   );
   const isFirst = currentFlatIdx === 0;
   const isLast = currentFlatIdx === allLessons.length - 1;
-  const isDone = completedLessons.has(activeKey);
+  const isDone = !!(activeLesson?.id && completedLessons.has(activeLesson.id));
   const progress = allLessons.length > 0 ? (completedLessons.size / allLessons.length) * 100 : 0;
 
   const goToLesson = (si: number, li: number) => {
@@ -52,10 +68,19 @@ export function CoursePlayerPage() {
     if (next) goToLesson(next.sectionIdx, next.lessonIdx);
   };
 
-  const markComplete = () => {
-    setCompletedLessons((prev) => new Set([...prev, activeKey]));
-    const next = allLessons[currentFlatIdx + 1];
-    if (next) goToLesson(next.sectionIdx, next.lessonIdx);
+  const handleMarkComplete = async () => {
+    if (!activeLesson?.id || isMarking) return;
+    setIsMarking(true);
+    try {
+      await markLessonComplete(activeLesson.id);
+      queryClient.invalidateQueries({ queryKey: ['lesson-progress', course.id] });
+      queryClient.invalidateQueries({ queryKey: ['course-progress', course.id] });
+      queryClient.invalidateQueries({ queryKey: ['enrollments'] });
+      const next = allLessons[currentFlatIdx + 1];
+      if (next) goToLesson(next.sectionIdx, next.lessonIdx);
+    } finally {
+      setIsMarking(false);
+    }
   };
 
   const toggleSection = (idx: number) => {
@@ -104,8 +129,8 @@ export function CoursePlayerPage() {
 
             {course.curriculum.map((section, si) => {
               const isOpen = openSections.has(si);
-              const sectionDone = section.lessons.filter((_, li) =>
-                completedLessons.has(lKey(si, li))
+              const sectionDone = section.lessons.filter((l) =>
+                l.id && completedLessons.has(l.id)
               ).length;
 
               return (
@@ -139,11 +164,10 @@ export function CoursePlayerPage() {
                         style={{ overflow: 'hidden' }}
                       >
                         {section.lessons.map((lesson, li) => {
-                          const key = lKey(si, li);
                           const isActive = si === activeSectionIdx && li === activeLessonIdx;
-                          const done = completedLessons.has(key);
+                          const done = !!(lesson.id && completedLessons.has(lesson.id));
                           return (
-                            <li key={li}>
+                            <li key={lesson.id ?? li}>
                               <button
                                 className={[
                                   'player-lesson',
@@ -243,9 +267,9 @@ export function CoursePlayerPage() {
                       <ChevronRight size={14} />
                     </Button>
                   ) : (
-                    <Button variant="primary" size="sm" onClick={markComplete}>
-                      Marcar como completada
-                      {!isLast && <ChevronRight size={14} />}
+                    <Button variant="primary" size="sm" onClick={handleMarkComplete} disabled={isMarking}>
+                      {isMarking ? 'Guardando...' : 'Marcar como completada'}
+                      {!isLast && !isMarking && <ChevronRight size={14} />}
                     </Button>
                   )}
 

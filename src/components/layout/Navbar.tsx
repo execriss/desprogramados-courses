@@ -21,7 +21,8 @@ export function Navbar() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const navigate = useNavigate();
-  const initials = user?.name
+  const displayName = user?.user_metadata?.name as string | undefined;
+  const initials = displayName
     ?.split(' ')
     .slice(0, 2)
     .map((w) => w[0])
@@ -72,7 +73,7 @@ export function Navbar() {
                 >
                   Mi aprendizaje
                 </NavLink>
-                <div className="navbar__avatar" title={user?.name ?? ''}>
+                <div className="navbar__avatar" title={displayName ?? ''}>
                   {initials}
                 </div>
                 <button

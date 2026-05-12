@@ -30,6 +30,7 @@ export interface Course {
   title: string;
   description: string;
   instructorId: string;
+  instructorName?: string;
   category: 'react' | 'node' | 'python' | 'vue' | 'angular' | 'nest' | 'go' | 'java';
   level: 'beginner' | 'intermediate' | 'advanced';
   price: number;

@@ -1,3 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { PageWrapper } from '../components/layout/PageWrapper';
 import { MetaTags } from '../components/seo/MetaTags';
 import { HeroSection } from '../components/home/HeroSection';
@@ -5,15 +8,16 @@ import { LearningPaths } from '../components/home/LearningPaths';
 import { FeaturesSection } from '../components/home/FeaturesSection';
 import { Testimonials } from '../components/home/Testimonials';
 import { CourseGrid } from '../components/courses/CourseGrid';
-import { mockCourses } from '../data/mockCourses';
-import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
-import { ArrowRight } from 'lucide-react';
+import { getFeaturedCourses } from '../services/courseService';
 import '../styles/components/sections.css';
 
-const featuredCourses = mockCourses.filter((c) => c.isFeatured);
-
 export function HomePage() {
+  const { data: featuredCourses = [] } = useQuery({
+    queryKey: ['featured-courses'],
+    queryFn: getFeaturedCourses,
+  });
+
   return (
     <PageWrapper>
       <MetaTags

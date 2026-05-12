@@ -9,6 +9,7 @@ type DbCourse = {
   thumbnail_url: string | null; tags: string[] | null;
   learning_points: string[] | null; is_featured: boolean | null;
   is_published: boolean | null;
+  instructors?: { name: string } | null;
 };
 
 function mapCourse(row: DbCourse): Course {
@@ -18,6 +19,7 @@ function mapCourse(row: DbCourse): Course {
     title: row.title,
     description: row.description,
     instructorId: row.instructor_id ?? '',
+    instructorName: row.instructors?.name,
     category: row.category as Course['category'],
     level: row.level as Course['level'],
     price: row.price,
@@ -40,7 +42,7 @@ interface CourseFilters {
 }
 
 export async function getCourses(filters?: CourseFilters): Promise<Course[]> {
-  let query = supabase.from('courses').select('*').eq('is_published', true);
+  let query = supabase.from('courses').select('*, instructors(name)').eq('is_published', true);
 
   if (filters?.category && filters.category !== 'all') {
     query = query.eq('category', filters.category);
@@ -49,7 +51,16 @@ export async function getCourses(filters?: CourseFilters): Promise<Course[]> {
     query = query.eq('level', filters.level);
   }
   if (filters?.search) {
-    query = query.ilike('title', `%${filters.search}%`);
+    const { data: matchingInstructors } = await supabase
+      .from('instructors')
+      .select('id')
+      .ilike('name', `%${filters.search}%`);
+    const ids = (matchingInstructors ?? []).map((i: { id: string }) => i.id);
+    if (ids.length > 0) {
+      query = query.or(`title.ilike.%${filters.search}%,instructor_id.in.(${ids.join(',')})`);
+    } else {
+      query = query.ilike('title', `%${filters.search}%`);
+    }
   }
 
   const { data, error } = await query.order('is_featured', { ascending: false });
@@ -60,7 +71,7 @@ export async function getCourses(filters?: CourseFilters): Promise<Course[]> {
 export async function getCourseBySlug(slug: string): Promise<Course | null> {
   const { data: courseRow, error } = await supabase
     .from('courses')
-    .select('*')
+    .select('*, instructors(name)')
     .eq('slug', slug)
     .single();
 
@@ -95,7 +106,7 @@ export async function getCourseBySlug(slug: string): Promise<Course | null> {
 export async function getCourseById(id: string): Promise<Course | null> {
   const { data, error } = await supabase
     .from('courses')
-    .select('*')
+    .select('*, instructors(name)')
     .eq('id', id)
     .single();
 
@@ -106,7 +117,7 @@ export async function getCourseById(id: string): Promise<Course | null> {
 export async function getFeaturedCourses(): Promise<Course[]> {
   const { data, error } = await supabase
     .from('courses')
-    .select('*')
+    .select('*, instructors(name)')
     .eq('is_featured', true)
     .eq('is_published', true)
     .limit(6);

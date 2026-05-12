@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Clock, Users, BookOpen, ChevronDown, Check, PlayCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
@@ -8,7 +9,7 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { CourseDetailSkeleton } from '../components/courses/CourseDetailSkeleton';
 import { useCourse } from '../hooks/useCourse';
-import { getInstructorById } from '../data/mockInstructors';
+import { getInstructorById } from '../services/instructorService';
 import { formatPrice, formatDuration, formatStudentCount } from '../utils/formatters';
 import type { Course } from '../types';
 import '../styles/components/course-detail.css';
@@ -44,6 +45,12 @@ export function CourseDetailPage() {
   const { course, isLoading } = useCourse(slug);
   const [openSections, setOpenSections] = useState<Set<number>>(new Set([0]));
 
+  const { data: instructor } = useQuery({
+    queryKey: ['instructor-by-id', course?.instructorId],
+    queryFn: () => getInstructorById(course!.instructorId),
+    enabled: !!course?.instructorId,
+  });
+
   const toggleSection = (idx: number) => {
     setOpenSections((prev) => {
       const next = new Set(prev);
@@ -64,8 +71,7 @@ export function CourseDetailPage() {
 
   if (!course) return <Navigate to="/courses" replace />;
 
-  const instructor = getInstructorById(course.instructorId);
-  const instructorName = instructor?.name ?? 'Instructor';
+  const instructorName = instructor?.name ?? course.instructorName ?? 'Instructor';
   const instructorInitials = instructorName.split(' ').map((n) => n[0]).join('');
 
   return (

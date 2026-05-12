@@ -1,6 +1,13 @@
 import { Award } from 'lucide-react';
 import type { Course } from '../../types';
-import type { UserProgress } from '../../data/mockUserProgress';
+
+interface UserProgress {
+  courseId: string;
+  progressPercent: number;
+  lastLessonTitle: string;
+  enrolledAt: string;
+  completedAt?: string;
+}
 
 interface CompletedCourseCardProps {
   course: Course;

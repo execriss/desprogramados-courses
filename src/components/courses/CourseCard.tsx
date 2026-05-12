@@ -53,7 +53,9 @@ export function CourseCard({ course }: CourseCardProps) {
 
           <h3 className="course-card__title">{course.title}</h3>
 
-          <p className="course-card__instructor">{course.instructor}</p>
+          {course.instructorName && (
+            <p className="course-card__instructor">{course.instructorName}</p>
+          )}
 
           <div className="course-card__stats">
             <span className="course-card__rating">
