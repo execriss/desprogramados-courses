@@ -19,8 +19,8 @@ export function LearningPaths() {
       <div className="section__inner">
         <div className="section__header">
           <p className="section__eyebrow">Rutas de aprendizaje</p>
-          <h2 className="section__title">Elige tu tecnología</h2>
-          <p className="section__subtitle">Currículos enfocados para cada stack, desde principiante hasta avanzado.</p>
+          <h2 className="section__title">Elige tu stack</h2>
+          <p className="section__subtitle">Cada ruta enseña la tecnología como se usa en entornos laborales reales — flujos de trabajo, decisiones y patrones de equipos senior.</p>
         </div>
 
         <div className="learning-paths__grid">

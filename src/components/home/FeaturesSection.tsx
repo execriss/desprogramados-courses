@@ -1,22 +1,22 @@
 import { motion } from 'framer-motion';
-import { Zap, BookOpen, Award } from 'lucide-react';
+import { Layers, GitBranch, Users } from 'lucide-react';
 import '../../styles/components/sections.css';
 
 const features = [
   {
-    icon: <Zap size={22} />,
-    title: 'Aprende construyendo',
-    text: 'Cada curso gira en torno a un proyecto real. Escribes código desde la primera lección — sin ejemplos de juguete, sin relleno.',
+    icon: <Layers size={22} />,
+    title: 'Patrones de producción, no de tutorial',
+    text: 'Enseñamos las arquitecturas y decisiones que usan equipos reales — no los ejemplos simplificados que nunca llegan a un entorno laboral.',
   },
   {
-    icon: <BookOpen size={22} />,
-    title: 'Curado, no inflado',
-    text: 'Eliminamos la redundancia sin piedad. Cada lección justifica su lugar. Termina cursos en días, no en meses.',
+    icon: <GitBranch size={22} />,
+    title: 'El "por qué" detrás del código',
+    text: '¿Por qué Redis aquí? ¿Cuándo NO usar microservicios? Cada decisión técnica se explica con el contexto que ningun tutorial te da.',
   },
   {
-    icon: <Award size={22} />,
-    title: 'Instructores de la industria',
-    text: 'Enseñado por ingenieros de Stripe, Vercel y Shopify — personas que usan estas herramientas en producción cada día.',
+    icon: <Users size={22} />,
+    title: 'Instructores activos en la industria',
+    text: 'Cada instructor trabaja hoy en equipos de ingeniería. Lo que enseñan es exactamente lo que hacen en su trabajo diario.',
   },
 ];
 
@@ -26,7 +26,7 @@ export function FeaturesSection() {
       <div className="section__inner">
         <div className="section__header">
           <p className="section__eyebrow">Por qué LearnCraft</p>
-          <h2 className="section__title">Creado para desarrolladores que entregan</h2>
+          <h2 className="section__title">Cursos orientados al trabajo real</h2>
         </div>
 
         <div className="features__grid">

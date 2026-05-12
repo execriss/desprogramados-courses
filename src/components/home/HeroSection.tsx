@@ -19,9 +19,9 @@ const fadeIn = (delay = 0) => ({
 
 /* ─── Palabras del título con stagger ─── */
 const titleLines = [
-  { words: ['De', 'la', 'teoría'] },
-  { words: ['al', 'código', 'que'] },
-  { words: ['se', 'despliega'] },
+  { words: ['Aprende', 'como'] },
+  { words: ['se', 'hace', 'en'] },
+  { words: ['producción'] },
 ];
 
 const wordVariants = {
@@ -68,7 +68,7 @@ export function HeroSection() {
             {/* Eyebrow */}
             <motion.div className="hero__eyebrow" {...fadeUp(0.05)}>
               <span className="hero__eyebrow-dot" />
-              Cursos creados por ingenieros de Stripe y Vercel
+              Lo que no enseñan los tutoriales de YouTube
             </motion.div>
 
             {/* Título palabra a palabra */}
@@ -77,7 +77,7 @@ export function HeroSection() {
                 <span key={li} className="hero__title-line">
                   {line.words.map((word) => {
                     const idx = wordIndex++;
-                    const isAccent = word === 'despliega';
+                    const isAccent = word === 'producción';
                     return (
                       <span key={word + idx} className="hero__word-wrap">
                         <motion.span
@@ -107,9 +107,9 @@ export function HeroSection() {
 
             {/* Subtítulo */}
             <motion.p className="hero__subtitle" {...fadeUp(0.55)}>
-              Cursos prácticos de React, Node, Python, Go y mucho más —
-              diseñados para que pases de ver tutoriales a construir
-              productos reales.
+              No más "Hola Mundo". Aprende los patrones, las decisiones
+              arquitectónicas y el flujo de trabajo que usan los ingenieros
+              senior en Stripe, Vercel y Shopify — cada día, en producción.
             </motion.p>
 
             {/* CTAs */}
@@ -179,7 +179,7 @@ export function HeroSection() {
                 <div className="hero-card__dots">
                   <span /><span /><span />
                 </div>
-                <span className="hero-card__pill">⚛️ React</span>
+                <span className="hero-card__pill">🟢 Node.js</span>
               </div>
 
               {/* Thumbnail */}
@@ -199,8 +199,8 @@ export function HeroSection() {
 
               {/* Contenido */}
               <div className="hero-card__body">
-                <p className="hero-card__label">Lección 8 de 12</p>
-                <p className="hero-card__title">Hooks avanzados y estado global</p>
+                <p className="hero-card__label">Lección 6 de 10</p>
+                <p className="hero-card__title">Rate limiting y caché en producción</p>
 
                 <div className="hero-card__meta">
                   <div className="hero-card__instructor">
@@ -230,14 +230,16 @@ export function HeroSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.1, ease: 'backOut' }}
               >
-                <motion.div
-                  animate={{ y: [0, i % 2 === 0 ? -6 : 6, 0] }}
-                  transition={{ duration: 3 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                <div
                   className="hero-badge__inner"
+                  style={{
+                    animation: `badgeFloat ${1.9 + i * 0.2}s ease-in-out ${i * 0.22}s infinite alternate`,
+                    willChange: 'transform',
+                  }}
                 >
                   <span className="hero-badge__emoji">{badge.emoji}</span>
                   <span className="hero-badge__label">{badge.label}</span>
-                </motion.div>
+                </div>
               </motion.div>
             ))}
 

@@ -11,6 +11,12 @@
   align-items: center;
 }
 
+/* ─── Keyframe flotante (corre en compositor, sin JS) ─── */
+@keyframes badgeFloat {
+  from { transform: translateY(0px);  }
+  to   { transform: translateY(-8px); }
+}
+
 /* ─── Dot grid background ─── */
 .hero__bg {
   position: absolute;
