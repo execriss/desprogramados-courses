@@ -1,6 +1,7 @@
 import { Search, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
+import { MetaTags } from '../components/seo/MetaTags';
 import { CourseCard } from '../components/courses/CourseCard';
 import { useCourses } from '../hooks/useCourses';
 import type { Course } from '../types';
@@ -33,6 +34,10 @@ export function CatalogPage() {
 
   return (
     <PageWrapper>
+      <MetaTags
+        title="Catálogo de cursos"
+        description="Explora todos los cursos de LearnCraft. Filtra por tecnología y nivel: React, Node.js, Python, Go, Vue, Angular y más."
+      />
       <main className="catalog">
         <div className="catalog__inner">
           <header className="catalog__header">

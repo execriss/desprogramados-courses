@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Clock, Users, BookOpen, ChevronDown, Check, PlayCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
+import { MetaTags } from '../components/seo/MetaTags';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { mockCourses } from '../data/mockCourses';
@@ -59,6 +60,10 @@ export function CourseDetailPage() {
 
   return (
     <PageWrapper>
+      <MetaTags
+        title={course.title}
+        description={course.description.slice(0, 160)}
+      />
       <main className="course-detail">
         {/* Hero */}
         <div className="course-detail__hero">

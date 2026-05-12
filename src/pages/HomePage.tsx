@@ -1,4 +1,5 @@
 import { PageWrapper } from '../components/layout/PageWrapper';
+import { MetaTags } from '../components/seo/MetaTags';
 import { HeroSection } from '../components/home/HeroSection';
 import { LearningPaths } from '../components/home/LearningPaths';
 import { FeaturesSection } from '../components/home/FeaturesSection';
@@ -15,6 +16,10 @@ const featuredCourses = mockCourses.filter((c) => c.isFeatured);
 export function HomePage() {
   return (
     <PageWrapper>
+      <MetaTags
+        title="Aprende como se hace en producción"
+        description="Cursos de React, Node, Python, Go y más — enseñados como se usan en Stripe, Vercel y Shopify. No tutoriales: flujos de trabajo reales."
+      />
       <main>
         <HeroSection />
         <LearningPaths />

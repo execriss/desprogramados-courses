@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, CheckCircle2, Circle, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { PageWrapper } from '../components/layout/PageWrapper';
+import { MetaTags } from '../components/seo/MetaTags';
 import { Button } from '../components/ui/Button';
 import { mockCourses } from '../data/mockCourses';
 import '../styles/components/player.css';
@@ -68,6 +69,10 @@ export function CoursePlayerPage() {
 
   return (
     <PageWrapper>
+      <MetaTags
+        title={activeLesson ? activeLesson.title : course.title}
+        description={`Aprendiendo ${course.title} en LearnCraft.`}
+      />
       <div className="player">
 
         {/* ─── Topbar ─── */}

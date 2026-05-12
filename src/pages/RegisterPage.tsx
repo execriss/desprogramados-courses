@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
+import { MetaTags } from '../components/seo/MetaTags';
 import { Button } from '../components/ui/Button';
 import '../styles/components/auth.css';
 
@@ -33,6 +34,7 @@ export function RegisterPage() {
 
   return (
     <PageWrapper>
+      <MetaTags title="Crear cuenta" description="Únete a +60.000 desarrolladores que aprenden como se programa en producción." />
       <main className="auth-layout">
         <motion.div
           className="auth-card"

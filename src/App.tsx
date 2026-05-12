@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
@@ -27,10 +28,12 @@ function AnimatedRoutes() {
 
 export function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <AnimatedRoutes />
-      <Footer />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Navbar />
+        <AnimatedRoutes />
+        <Footer />
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }

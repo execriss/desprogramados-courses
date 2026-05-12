@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
+import { MetaTags } from '../components/seo/MetaTags';
 import { Button } from '../components/ui/Button';
 import '../styles/components/auth.css';
 
@@ -30,6 +31,7 @@ export function LoginPage() {
 
   return (
     <PageWrapper>
+      <MetaTags title="Iniciar sesión" description="Inicia sesión en LearnCraft para continuar aprendiendo." />
       <main className="auth-layout">
         <motion.div
           className="auth-card"
