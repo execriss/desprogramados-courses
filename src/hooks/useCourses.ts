@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { mockCourses } from '../data/mockCourses';
 import type { Course } from '../types';
 
@@ -9,8 +9,15 @@ export function useCourses() {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<Category>('all');
   const [level, setLevel] = useState<Level>('all');
+  const [isLoading, setIsLoading] = useState(true);
 
-  const filtered = useMemo(() => {
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const courses = useMemo(() => {
+    if (isLoading) return [];
     return mockCourses.filter((c) => {
       const matchesSearch =
         !search ||
@@ -21,7 +28,7 @@ export function useCourses() {
       const matchesLevel = level === 'all' || c.level === level;
       return matchesSearch && matchesCategory && matchesLevel;
     });
-  }, [search, category, level]);
+  }, [search, category, level, isLoading]);
 
-  return { courses: filtered, search, setSearch, category, setCategory, level, setLevel };
+  return { courses, isLoading, search, setSearch, category, setCategory, level, setLevel };
 }

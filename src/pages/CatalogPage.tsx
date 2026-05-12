@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
 import { MetaTags } from '../components/seo/MetaTags';
 import { CourseCard } from '../components/courses/CourseCard';
+import { CourseCardSkeleton } from '../components/courses/CourseCardSkeleton';
 import { useCourses } from '../hooks/useCourses';
 import type { Course } from '../types';
 import '../styles/components/catalog.css';
@@ -30,7 +31,7 @@ const LEVELS: { value: Level; label: string }[] = [
 ];
 
 export function CatalogPage() {
-  const { courses, search, setSearch, category, setCategory, level, setLevel } = useCourses();
+  const { courses, isLoading, search, setSearch, category, setCategory, level, setLevel } = useCourses();
 
   return (
     <PageWrapper>
@@ -89,7 +90,13 @@ export function CatalogPage() {
             </div>
           </div>
 
-          {courses.length === 0 ? (
+          {isLoading ? (
+            <div className="course-grid">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <CourseCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : courses.length === 0 ? (
             <div className="empty-state">
               <BookOpen size={48} className="empty-state__icon" />
               <h2 className="empty-state__title">No se encontraron cursos</h2>

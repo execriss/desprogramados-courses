@@ -6,7 +6,8 @@ import { PageWrapper } from '../components/layout/PageWrapper';
 import { MetaTags } from '../components/seo/MetaTags';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
-import { mockCourses } from '../data/mockCourses';
+import { CourseDetailSkeleton } from '../components/courses/CourseDetailSkeleton';
+import { useCourse } from '../hooks/useCourse';
 import { formatPrice, formatDuration, formatStudentCount } from '../utils/formatters';
 import type { Course } from '../types';
 import '../styles/components/course-detail.css';
@@ -39,10 +40,8 @@ const LEARN_ITEMS_DEFAULT = [
 
 export function CourseDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const course = mockCourses.find((c) => c.slug === slug);
+  const { course, isLoading } = useCourse(slug);
   const [openSections, setOpenSections] = useState<Set<number>>(new Set([0]));
-
-  if (!course) return <Navigate to="/courses" replace />;
 
   const toggleSection = (idx: number) => {
     setOpenSections((prev) => {
@@ -52,6 +51,17 @@ export function CourseDetailPage() {
       return next;
     });
   };
+
+  if (isLoading) {
+    return (
+      <PageWrapper>
+        <MetaTags title="Cargando curso..." />
+        <CourseDetailSkeleton />
+      </PageWrapper>
+    );
+  }
+
+  if (!course) return <Navigate to="/courses" replace />;
 
   const instructorInitials = course.instructor
     .split(' ')
