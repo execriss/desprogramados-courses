@@ -1,4 +1,5 @@
 export interface Lesson {
+  id?: string;
   title: string;
   durationMin: number;
   isPreview: boolean;

@@ -1,35 +1,45 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-
-export interface MockUser {
-  id: string;
-  name: string;
-  email: string;
-}
+import type { User, Session } from '@supabase/supabase-js';
+import * as authService from '../services/authService';
 
 interface AuthState {
+  user: User | null;
+  session: Session | null;
+  isLoading: boolean;
   isLoggedIn: boolean;
-  user: MockUser | null;
-  login: (data?: { name?: string; email?: string }) => void;
-  logout: () => void;
+  initialize: () => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string, name: string) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      isLoggedIn: false,
-      user: null,
-      login: (data) =>
-        set({
-          isLoggedIn: true,
-          user: {
-            id: 'mock-1',
-            name: data?.name?.trim() || 'Usuario Demo',
-            email: data?.email || 'demo@learncraft.com',
-          },
-        }),
-      logout: () => set({ isLoggedIn: false, user: null }),
-    }),
-    { name: 'lc-auth' }
-  )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  session: null,
+  isLoading: true,
+  isLoggedIn: false,
+
+  initialize: async () => {
+    const session = await authService.getSession();
+    set({ session, user: session?.user ?? null, isLoggedIn: !!session, isLoading: false });
+
+    authService.onAuthStateChange((_event, session) => {
+      set({ session, user: session?.user ?? null, isLoggedIn: !!session });
+    });
+  },
+
+  login: async (email, password) => {
+    const { session } = await authService.signIn(email, password);
+    set({ session, user: session?.user ?? null, isLoggedIn: !!session });
+  },
+
+  register: async (email, password, name) => {
+    const { session } = await authService.signUp(email, password, name);
+    set({ session, user: session?.user ?? null, isLoggedIn: !!session });
+  },
+
+  logout: async () => {
+    await authService.signOut();
+    set({ user: null, session: null, isLoggedIn: false });
+  },
+}));

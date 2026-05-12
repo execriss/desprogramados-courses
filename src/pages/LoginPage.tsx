@@ -7,10 +7,21 @@ import { Button } from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
 import '../styles/components/auth.css';
 
+const AUTH_ERRORS: Record<string, string> = {
+  'Invalid login credentials': 'Email o contraseña incorrectos',
+  'Email not confirmed': 'Confirma tu email antes de iniciar sesión',
+  'Too many requests': 'Demasiados intentos. Espera unos minutos.',
+};
+
+function parseError(msg: string) {
+  return AUTH_ERRORS[msg] ?? 'Ocurrió un error. Inténtalo de nuevo.';
+}
+
 export function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [authError, setAuthError] = useState('');
   const [loading, setLoading] = useState(false);
   const login = useAuthStore((s) => s.login);
   const navigate = useNavigate();
@@ -24,16 +35,22 @@ export function LoginPage() {
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
+    setAuthError('');
     setLoading(true);
-    setTimeout(() => {
-      login({ email });
+    try {
+      await login(email, password);
       navigate(searchParams.get('redirect') ?? '/dashboard');
-    }, 800);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Error desconocido';
+      setAuthError(parseError(msg));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,17 +67,16 @@ export function LoginPage() {
           <h1 className="auth-card__title">Bienvenido de vuelta</h1>
           <p className="auth-card__subtitle">Inicia sesión para continuar aprendiendo</p>
 
+          {authError && <p className="auth-error">{authError}</p>}
+
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <div className="form-field">
               <label className="form-field__label" htmlFor="email">Email</label>
               <input
-                id="email"
-                type="email"
+                id="email" type="email"
                 className={`form-field__input${errors.email ? ' form-field__input--error' : ''}`}
-                placeholder="tu@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
+                placeholder="tu@email.com" value={email}
+                onChange={(e) => setEmail(e.target.value)} autoComplete="email"
               />
               {errors.email && <p className="form-field__error">{errors.email}</p>}
             </div>
@@ -68,13 +84,10 @@ export function LoginPage() {
             <div className="form-field">
               <label className="form-field__label" htmlFor="password">Contraseña</label>
               <input
-                id="password"
-                type="password"
+                id="password" type="password"
                 className={`form-field__input${errors.password ? ' form-field__input--error' : ''}`}
-                placeholder="Tu contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
+                placeholder="Tu contraseña" value={password}
+                onChange={(e) => setPassword(e.target.value)} autoComplete="current-password"
               />
               {errors.password && <p className="form-field__error">{errors.password}</p>}
             </div>

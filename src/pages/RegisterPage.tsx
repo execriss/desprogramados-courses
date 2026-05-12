@@ -7,13 +7,24 @@ import { Button } from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
 import '../styles/components/auth.css';
 
+const AUTH_ERRORS: Record<string, string> = {
+  'User already registered': 'Ya existe una cuenta con ese email',
+  'Password should be at least 6 characters': 'La contraseña debe tener al menos 6 caracteres',
+  'Too many requests': 'Demasiados intentos. Espera unos minutos.',
+};
+
+function parseError(msg: string) {
+  return AUTH_ERRORS[msg] ?? 'Ocurrió un error. Inténtalo de nuevo.';
+}
+
 export function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [authError, setAuthError] = useState('');
   const [loading, setLoading] = useState(false);
-  const login = useAuthStore((s) => s.login);
+  const register = useAuthStore((s) => s.register);
   const navigate = useNavigate();
 
   const validate = () => {
@@ -26,16 +37,22 @@ export function RegisterPage() {
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
+    setAuthError('');
     setLoading(true);
-    setTimeout(() => {
-      login({ name, email });
+    try {
+      await register(email, password, name);
       navigate('/dashboard');
-    }, 800);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Error desconocido';
+      setAuthError(parseError(msg));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,17 +69,16 @@ export function RegisterPage() {
           <h1 className="auth-card__title">Crea tu cuenta</h1>
           <p className="auth-card__subtitle">Empieza a aprender gratis hoy</p>
 
+          {authError && <p className="auth-error">{authError}</p>}
+
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <div className="form-field">
               <label className="form-field__label" htmlFor="name">Nombre completo</label>
               <input
-                id="name"
-                type="text"
+                id="name" type="text"
                 className={`form-field__input${errors.name ? ' form-field__input--error' : ''}`}
-                placeholder="Juan García"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                autoComplete="name"
+                placeholder="Juan García" value={name}
+                onChange={(e) => setName(e.target.value)} autoComplete="name"
               />
               {errors.name && <p className="form-field__error">{errors.name}</p>}
             </div>
@@ -70,13 +86,10 @@ export function RegisterPage() {
             <div className="form-field">
               <label className="form-field__label" htmlFor="email">Email</label>
               <input
-                id="email"
-                type="email"
+                id="email" type="email"
                 className={`form-field__input${errors.email ? ' form-field__input--error' : ''}`}
-                placeholder="tu@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
+                placeholder="tu@email.com" value={email}
+                onChange={(e) => setEmail(e.target.value)} autoComplete="email"
               />
               {errors.email && <p className="form-field__error">{errors.email}</p>}
             </div>
@@ -84,13 +97,10 @@ export function RegisterPage() {
             <div className="form-field">
               <label className="form-field__label" htmlFor="password">Contraseña</label>
               <input
-                id="password"
-                type="password"
+                id="password" type="password"
                 className={`form-field__input${errors.password ? ' form-field__input--error' : ''}`}
-                placeholder="Mínimo 8 caracteres"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="new-password"
+                placeholder="Mínimo 8 caracteres" value={password}
+                onChange={(e) => setPassword(e.target.value)} autoComplete="new-password"
               />
               {errors.password && <p className="form-field__error">{errors.password}</p>}
             </div>
