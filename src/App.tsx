@@ -7,6 +7,7 @@ import { CatalogPage } from './pages/CatalogPage';
 import { CourseDetailPage } from './pages/CourseDetailPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
+import { CoursePlayerPage } from './pages/CoursePlayerPage';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CatalogPage />} />
         <Route path="/courses/:slug" element={<CourseDetailPage />} />
+        <Route path="/courses/:slug/play" element={<CoursePlayerPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>

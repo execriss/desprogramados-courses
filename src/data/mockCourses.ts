@@ -17,6 +17,14 @@ export const mockCourses: Course[] = [
     durationHours: 22.5,
     tags: ['server components', 'arquitectura', 'performance', 'typescript'],
     isFeatured: true,
+    learningPoints: [
+      'Cuándo usar Server Components — y cuándo evitarlos en producción',
+      'Estrategias de caching con fetch nativo: stale-while-revalidate real',
+      'Estado global sin sobreingeniería: Zustand como lo usan en Vercel',
+      'Memoización correcta: cuándo memo, useCallback y useMemo realmente ayudan',
+      'Arquitectura de carpetas que escala de 1 a 50 personas en el equipo',
+      'Server Actions y formularios sin librerías externas',
+    ],
     curriculum: [
       {
         title: 'Mentalidad de producción',
@@ -60,6 +68,14 @@ export const mockCourses: Course[] = [
     durationHours: 18,
     tags: ['express', 'redis', 'postgresql', 'docker'],
     isFeatured: true,
+    learningPoints: [
+      'Rate limiting con Redis Sliding Window — como lo implementa Stripe',
+      'JWT vs Sessions: la decisión real en APIs con miles de usuarios concurrentes',
+      'Connection pooling: evitar el cuello de botella con PostgreSQL en producción',
+      'Logging estructurado con correlación de requests para debuggear en producción',
+      'Patrones de manejo de errores que evitan los 500s silenciosos',
+      'Deploy en AWS ECS con health checks, rollback y zero downtime',
+    ],
     curriculum: [
       {
         title: 'El event loop que importa',
@@ -93,6 +109,14 @@ export const mockCourses: Course[] = [
     durationHours: 28,
     tags: ['pandas', 'pydantic', 'prefect', 'scikit-learn'],
     isFeatured: true,
+    learningPoints: [
+      'Gestión de entornos con uv — el estándar moderno en equipos de datos',
+      'Type hints que realmente previenen bugs en pipelines de datos críticos',
+      'Validación robusta con Pydantic v2 en ingestión de datos externos',
+      'Las operaciones de Pandas que usas el 80% del tiempo (y cómo hacerlas rápido)',
+      'Pipelines reproducibles con versionado de datos y experimentos',
+      'Integrar y servir modelos de scikit-learn en APIs reales con FastAPI',
+    ],
     curriculum: [
       {
         title: 'Python como los data engineers',

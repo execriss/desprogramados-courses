@@ -24,6 +24,7 @@ export interface Course {
   durationHours: number;
   thumbnail?: string;
   tags: string[];
+  learningPoints?: string[];
   curriculum: Section[];
   isFeatured?: boolean;
 }

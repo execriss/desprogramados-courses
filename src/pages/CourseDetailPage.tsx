@@ -27,13 +27,13 @@ const LEVEL_LABELS: Record<Course['level'], string> = {
   advanced: 'Avanzado',
 };
 
-const LEARN_ITEMS = [
-  'Construye proyectos reales listos para producción',
-  'Domina patrones modernos y buenas prácticas',
-  'Escribe código limpio y mantenible',
-  'Despliega tus aplicaciones con confianza',
-  'Depura y resuelve problemas de forma autónoma',
-  'Comprende las decisiones arquitectónicas clave',
+const LEARN_ITEMS_DEFAULT = [
+  'Patrones y arquitecturas usados en equipos de ingeniería reales',
+  'Las decisiones técnicas detrás del código — el "qué" y el "por qué"',
+  'Flujo de trabajo profesional: estructura de proyecto y deploy real',
+  'Debugging como lo hacen los seniors: encontrar el problema raíz',
+  'Integración con herramientas del ecosistema real (Redis, Docker, AWS)',
+  'Operación en producción con observabilidad básica',
 ];
 
 export function CourseDetailPage() {
@@ -109,10 +109,12 @@ export function CourseDetailPage() {
               </div>
               <div className="course-sidebar__body">
                 <p className="course-sidebar__price">{formatPrice(course.price)}</p>
-                <Link to="/register">
+                <Link to={`/courses/${course.slug}/play`}>
                   <Button variant="primary" size="lg" fullWidth>Inscribirse ahora</Button>
                 </Link>
-                <Button variant="secondary" size="md" fullWidth>Ver previsualización gratis</Button>
+                <Link to={`/courses/${course.slug}/play`}>
+                  <Button variant="secondary" size="md" fullWidth>Ver previsualización gratis</Button>
+                </Link>
                 <ul className="course-sidebar__highlights">
                   <li className="course-sidebar__highlight">
                     <Clock size={15} className="course-sidebar__highlight-icon" />
@@ -143,7 +145,7 @@ export function CourseDetailPage() {
             <section>
               <h2 className="course-section__title">Lo que aprenderás</h2>
               <div className="learn-grid">
-                {LEARN_ITEMS.map((item) => (
+                {(course.learningPoints ?? LEARN_ITEMS_DEFAULT).map((item) => (
                   <div key={item} className="learn-item">
                     <Check size={15} className="learn-item__icon" />
                     <span>{item}</span>
