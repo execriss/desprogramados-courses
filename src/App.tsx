@@ -15,6 +15,9 @@ import { DashboardPage } from './pages/DashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { InstructorPage } from './pages/InstructorPage';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { AdminGuard } from './components/admin/AdminGuard';
+import { AdminCoursesPage } from './pages/admin/AdminCoursesPage';
+import { AdminCourseEditPage } from './pages/admin/AdminCourseEditPage';
 import { useAuthStore } from './store/authStore';
 
 const queryClient = new QueryClient({
@@ -52,6 +55,14 @@ function AnimatedRoutes() {
               <DashboardPage />
             </ProtectedRoute>
           }
+        />
+        <Route
+          path="/admin"
+          element={<AdminGuard><AdminCoursesPage /></AdminGuard>}
+        />
+        <Route
+          path="/admin/courses/:id"
+          element={<AdminGuard><AdminCourseEditPage /></AdminGuard>}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
