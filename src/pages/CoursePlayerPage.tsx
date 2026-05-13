@@ -203,7 +203,7 @@ export function CoursePlayerPage() {
           {/* Main */}
           <div className="player__main">
 
-            {/* Video mock */}
+            {/* Video */}
             <motion.div
               key={`video-${activeKey}`}
               className="player__video"
@@ -211,11 +211,22 @@ export function CoursePlayerPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.35 }}
             >
-              <div className="player__video-inner">
-                <div className="player__play-btn" aria-hidden="true">
-                  <Play size={30} fill="white" color="white" style={{ marginLeft: 3 }} />
+              {activeLesson?.videoUrl ? (
+                <video
+                  key={activeLesson.videoUrl}
+                  className="player__video-element"
+                  src={activeLesson.videoUrl}
+                  controls
+                  controlsList="nodownload"
+                  onContextMenu={(e) => e.preventDefault()}
+                />
+              ) : (
+                <div className="player__video-inner">
+                  <div className="player__play-btn" aria-hidden="true">
+                    <Play size={30} fill="white" color="white" style={{ marginLeft: 3 }} />
+                  </div>
                 </div>
-              </div>
+              )}
             </motion.div>
 
             <div className="player__divider" />

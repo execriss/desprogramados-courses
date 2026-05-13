@@ -292,6 +292,14 @@
   overflow: hidden;
 }
 
+.player__video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
 /* radial glow behind play button */
 .player__video::before {
   content: '';

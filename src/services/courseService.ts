@@ -85,7 +85,7 @@ export async function getCourseBySlug(slug: string): Promise<Course | null> {
 
   const curriculum: Section[] = (sections ?? []).map((sec: {
     id: string; title: string; position: number;
-    lessons: { id: string; title: string; duration_min: number; position: number; is_preview: boolean | null }[];
+    lessons: { id: string; title: string; duration_min: number; position: number; is_preview: boolean | null; video_url: string | null }[];
   }) => ({
     title: sec.title,
     lessons: (sec.lessons ?? [])
@@ -95,6 +95,7 @@ export async function getCourseBySlug(slug: string): Promise<Course | null> {
         title: l.title,
         durationMin: l.duration_min,
         isPreview: l.is_preview ?? false,
+        videoUrl: l.video_url ?? undefined,
       })),
   }));
 

@@ -3,6 +3,7 @@ export interface Lesson {
   title: string;
   durationMin: number;
   isPreview: boolean;
+  videoUrl?: string;
 }
 
 export interface Section {
