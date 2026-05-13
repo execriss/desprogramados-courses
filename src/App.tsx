@@ -14,6 +14,9 @@ import { CoursePlayerPage } from './pages/CoursePlayerPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { InstructorPage } from './pages/InstructorPage';
+import { CertificatePage } from './pages/CertificatePage';
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { AdminGuard } from './components/admin/AdminGuard';
 import { AdminCoursesPage } from './pages/admin/AdminCoursesPage';
@@ -68,6 +71,16 @@ function AnimatedRoutes() {
         <Route
           path="/admin/courses/:id"
           element={<AdminGuard><AdminCourseEditPage /></AdminGuard>}
+        />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route
+          path="/certificate/:courseId"
+          element={
+            <ProtectedRoute>
+              <CertificatePage />
+            </ProtectedRoute>
+          }
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

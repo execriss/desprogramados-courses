@@ -98,6 +98,9 @@ export function LoginPage() {
           </form>
 
           <p className="auth-footer">
+            <Link to="/forgot-password" className="auth-footer__link">¿Olvidaste tu contraseña?</Link>
+          </p>
+          <p className="auth-footer">
             ¿No tienes cuenta?{' '}
             <Link to="/register" className="auth-footer__link">Créala gratis</Link>
           </p>

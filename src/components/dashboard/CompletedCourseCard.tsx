@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Award } from 'lucide-react';
 import type { Course } from '../../types';
 
@@ -36,10 +37,10 @@ export function CompletedCourseCard({ course, progress }: CompletedCourseCardPro
             Completado el {formatDate(progress.completedAt)}
           </p>
         )}
-        <button className="completed-card__cert" disabled>
+        <Link to={`/certificate/${course.id}`} className="completed-card__cert">
           <Award size={13} />
           Ver certificado
-        </button>
+        </Link>
       </div>
     </div>
   );
