@@ -3,6 +3,14 @@ import { supabase } from '../lib/supabase';
 const UPLOAD_WORKER = 'https://desprogramados-upload.guinazuexequiel-dev.workers.dev';
 const ADMIN_SECRET = import.meta.env.VITE_ADMIN_SECRET as string;
 
+// ─── Instructors ────────────────────────────────────────────────────────────
+
+export async function adminGetInstructors() {
+  const { data, error } = await supabase.from('instructors').select('id, name').order('name');
+  if (error) throw error;
+  return data ?? [];
+}
+
 // ─── Courses ────────────────────────────────────────────────────────────────
 
 export async function adminGetAllCourses() {

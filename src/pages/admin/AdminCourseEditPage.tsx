@@ -31,7 +31,6 @@ export function AdminCourseEditPage() {
   const [openSections, setOpenSections] = useState<Set<string>>(new Set());
   const [newSectionTitle, setNewSectionTitle] = useState('');
 
-  if (id === 'new') return <Navigate to="/admin" replace />;
   if (loadingCourse) return <div className="admin-page"><p className="admin-loading">Cargando...</p></div>;
   if (!course) return <Navigate to="/admin" replace />;
 
