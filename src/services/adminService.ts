@@ -37,9 +37,10 @@ export async function adminCreateCourse(values: {
   category: string; level: string; price: number;
   instructor_id: string; thumbnail_url?: string;
 }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data, error } = await supabase
     .from('courses')
-    .insert({ ...values, is_published: false, is_featured: false })
+    .insert({ ...values, is_published: false, is_featured: false } as any)
     .select('id')
     .single();
   if (error) throw error;
@@ -47,7 +48,8 @@ export async function adminCreateCourse(values: {
 }
 
 export async function adminUpdateCourse(id: string, values: Record<string, unknown>) {
-  const { error } = await supabase.from('courses').update(values).eq('id', id);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await supabase.from('courses').update(values as any).eq('id', id);
   if (error) throw error;
 }
 
@@ -103,7 +105,8 @@ export async function adminCreateLesson(sectionId: string, values: {
 }
 
 export async function adminUpdateLesson(id: string, values: Record<string, unknown>) {
-  const { error } = await supabase.from('lessons').update(values).eq('id', id);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await supabase.from('lessons').update(values as any).eq('id', id);
   if (error) throw error;
 }
 

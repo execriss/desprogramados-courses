@@ -69,7 +69,7 @@ export function AdminCoursesPage() {
                   <button
                     className="admin-icon-btn"
                     title={c.is_published ? 'Despublicar' : 'Publicar'}
-                    onClick={() => handleToggle(c.id, c.is_published)}
+                    onClick={() => handleToggle(c.id, !!c.is_published)}
                     disabled={toggling === c.id}
                   >
                     {c.is_published ? <EyeOff size={15} /> : <Eye size={15} />}

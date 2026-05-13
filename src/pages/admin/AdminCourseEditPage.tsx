@@ -224,7 +224,7 @@ export function AdminCourseEditPage() {
                         <label className="admin-checkbox">
                           <input
                             type="checkbox"
-                            defaultChecked={lesson.is_preview}
+                            defaultChecked={lesson.is_preview ?? false}
                             onChange={(e) => handleLessonChange(lesson.id, 'is_preview', e.target.checked)}
                           />
                           Vista previa
