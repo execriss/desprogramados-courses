@@ -6,7 +6,9 @@ interface ThemeStore {
   setTheme: (theme: Theme) => void;
 }
 
+const savedTheme = (typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null) as Theme | null;
+
 export const useThemeStore = create<ThemeStore>((set) => ({
-  theme: 'light',
+  theme: savedTheme === 'light' ? 'light' : 'dark',
   setTheme: (theme) => set({ theme }),
 }));
