@@ -48,7 +48,14 @@ function AnimatedRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CatalogPage />} />
         <Route path="/courses/:slug" element={<CourseDetailPage />} />
-        <Route path="/courses/:slug/play" element={<CoursePlayerPage />} />
+        <Route
+          path="/courses/:slug/play"
+          element={
+            <ProtectedRoute>
+              <CoursePlayerPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/instructors/:slug" element={<InstructorPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

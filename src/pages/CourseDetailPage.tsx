@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { Clock, Users, BookOpen, ChevronDown, Check, PlayCircle } from 'lucide-react';
+import { Clock, Users, BookOpen, ChevronDown, Check, PlayCircle, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/layout/PageWrapper';
 import { MetaTags } from '../components/seo/MetaTags';
@@ -10,6 +10,9 @@ import { Button } from '../components/ui/Button';
 import { CourseDetailSkeleton } from '../components/courses/CourseDetailSkeleton';
 import { useCourse } from '../hooks/useCourse';
 import { getInstructorById } from '../services/instructorService';
+import { isEnrolled, enrollFree } from '../services/enrollmentService';
+import { getCourseProgress } from '../services/progressService';
+import { useAuthStore } from '../store/authStore';
 import { formatPrice, formatDuration, formatStudentCount } from '../utils/formatters';
 import type { Course } from '../types';
 import '../styles/components/course-detail.css';
@@ -44,12 +47,42 @@ export function CourseDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { course, isLoading } = useCourse(slug);
   const [openSections, setOpenSections] = useState<Set<number>>(new Set([0]));
+  const [enrolling, setEnrolling] = useState(false);
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuthStore();
 
   const { data: instructor } = useQuery({
     queryKey: ['instructor-by-id', course?.instructorId],
     queryFn: () => getInstructorById(course!.instructorId),
     enabled: !!course?.instructorId,
   });
+
+  const { data: enrolled = false } = useQuery({
+    queryKey: ['enrolled', course?.id],
+    queryFn: () => isEnrolled(course!.id),
+    enabled: !!course?.id && isLoggedIn,
+  });
+
+  const { data: progress } = useQuery({
+    queryKey: ['course-progress', course?.id],
+    queryFn: () => getCourseProgress(course!.id),
+    enabled: !!course?.id && enrolled,
+  });
+
+  const handleEnroll = async () => {
+    if (!course) return;
+    if (!isLoggedIn) {
+      navigate(`/login?redirect=/courses/${course.slug}/play`);
+      return;
+    }
+    setEnrolling(true);
+    try {
+      await enrollFree(course.id);
+      navigate(`/courses/${course.slug}/play`);
+    } finally {
+      setEnrolling(false);
+    }
+  };
 
   const toggleSection = (idx: number) => {
     setOpenSections((prev) => {
@@ -130,12 +163,40 @@ export function CourseDetailPage() {
               </div>
               <div className="course-sidebar__body">
                 <p className="course-sidebar__price">{formatPrice(course.price)}</p>
-                <Link to={`/courses/${course.slug}/play`}>
-                  <Button variant="primary" size="lg" fullWidth>Inscribirse ahora</Button>
-                </Link>
-                <Link to={`/courses/${course.slug}/play`}>
-                  <Button variant="secondary" size="md" fullWidth>Ver previsualización gratis</Button>
-                </Link>
+
+                {enrolled ? (
+                  <>
+                    {progress && progress.totalCount > 0 && (
+                      <div className="course-sidebar__progress">
+                        <div className="course-sidebar__progress-bar">
+                          <div
+                            className="course-sidebar__progress-fill"
+                            style={{ width: `${progress.percent}%` }}
+                          />
+                        </div>
+                        <span className="course-sidebar__progress-label">
+                          {progress.percent}% completado
+                        </span>
+                      </div>
+                    )}
+                    <Link to={`/courses/${course.slug}/play`}>
+                      <Button variant="primary" size="lg" fullWidth>
+                        {progress && progress.completedCount > 0 ? 'Continuar aprendiendo' : 'Empezar curso'}
+                      </Button>
+                    </Link>
+                  </>
+                ) : (
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    fullWidth
+                    onClick={handleEnroll}
+                    disabled={enrolling}
+                  >
+                    {enrolling ? <><Loader2 size={16} className="spin" /> Inscribiendo...</> : 'Inscribirse gratis'}
+                  </Button>
+                )}
+
                 <ul className="course-sidebar__highlights">
                   <li className="course-sidebar__highlight">
                     <Clock size={15} className="course-sidebar__highlight-icon" />
