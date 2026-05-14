@@ -37,7 +37,7 @@ export function CatalogPage() {
     <PageWrapper>
       <MetaTags
         title="Catálogo de cursos"
-        description="Explora todos los cursos de LearnCraft. Filtra por tecnología y nivel: React, Node.js, Python, Go, Vue, Angular y más."
+        description="Explora todos los cursos de Desprogramados. Filtra por tecnología y nivel: React, Node.js, Python, Go, Vue, Angular y más."
       />
       <main className="catalog">
         <div className="catalog__inner">

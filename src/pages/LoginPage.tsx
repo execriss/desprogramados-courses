@@ -55,7 +55,7 @@ export function LoginPage() {
 
   return (
     <PageWrapper>
-      <MetaTags title="Iniciar sesión" description="Inicia sesión en LearnCraft para continuar aprendiendo." />
+      <MetaTags title="Iniciar sesión" description="Inicia sesión en Desprogramados para continuar aprendiendo." />
       <main className="auth-layout">
         <motion.div
           className="auth-card"
@@ -63,7 +63,7 @@ export function LoginPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
         >
-          <p className="auth-card__logo">Learn<span>Craft</span></p>
+          <img src="/logo.png" alt="Desprogramados" style={{ height: '64px', width: 'auto', margin: '0 auto 4px' }} />
           <h1 className="auth-card__title">Bienvenido de vuelta</h1>
           <p className="auth-card__subtitle">Inicia sesión para continuar aprendiendo</p>
 

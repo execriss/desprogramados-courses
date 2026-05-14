@@ -25,7 +25,7 @@ export function FeaturesSection() {
     <section className="section section--alt">
       <div className="section__inner">
         <div className="section__header">
-          <p className="section__eyebrow">Por qué LearnCraft</p>
+          <p className="section__eyebrow">Por qué Desprogramados</p>
           <h2 className="section__title">Cursos orientados al trabajo real</h2>
         </div>
 

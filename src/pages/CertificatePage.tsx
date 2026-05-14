@@ -55,7 +55,7 @@ export function CertificatePage() {
           <div className="cert__top-bar" />
 
           <div className="cert__header">
-            <p className="cert__platform">LearnCraft</p>
+            <p className="cert__platform">Desprogramados</p>
             <p className="cert__eyebrow">Certificado de finalización</p>
           </div>
 

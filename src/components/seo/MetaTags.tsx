@@ -6,7 +6,7 @@ interface MetaTagsProps {
   image?: string;
 }
 
-const SITE_NAME = 'LearnCraft';
+const SITE_NAME = 'Desprogramados';
 const DEFAULT_DESCRIPTION =
   'Aprende como se hace en producción. Los patrones, decisiones y flujos de trabajo que usan los ingenieros senior en Stripe, Vercel y Shopify.';
 

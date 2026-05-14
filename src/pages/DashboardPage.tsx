@@ -64,7 +64,7 @@ export function DashboardPage() {
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.header className="dashboard__header" variants={fadeUp}>
             <h1 className="dashboard__greeting">Hola, {firstName} 👋</h1>
-            <p className="dashboard__joined">Miembro de LearnCraft</p>
+            <p className="dashboard__joined">Miembro de Desprogramados</p>
           </motion.header>
 
           <motion.div className="dashboard__stats" variants={fadeUp}>

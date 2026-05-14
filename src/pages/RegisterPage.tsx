@@ -65,7 +65,7 @@ export function RegisterPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
         >
-          <p className="auth-card__logo">Learn<span>Craft</span></p>
+          <img src="/logo.png" alt="Desprogramados" style={{ height: '64px', width: 'auto', margin: '0 auto 4px' }} />
           <h1 className="auth-card__title">Crea tu cuenta</h1>
           <p className="auth-card__subtitle">Empieza a aprender gratis hoy</p>
 

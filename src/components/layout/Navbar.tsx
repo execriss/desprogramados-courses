@@ -44,7 +44,7 @@ export function Navbar() {
       >
         <div className="navbar__inner">
           <Link to="/" className="navbar__logo">
-            Learn<span>Craft</span>
+            <img src="/logo.png" alt="Desprogramados" className="navbar__logo-img" />
           </Link>
 
           <nav className="navbar__nav" aria-label="Navegación principal">
@@ -134,7 +134,7 @@ export function Navbar() {
             >
               <div className="mobile-menu__header">
                 <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-                  Learn<span>Craft</span>
+                  <img src="/logo.png" alt="Desprogramados" className="navbar__logo-img" />
                 </Link>
                 <button
                   className="mobile-menu__close"

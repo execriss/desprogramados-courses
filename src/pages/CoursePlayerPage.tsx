@@ -96,7 +96,7 @@ export function CoursePlayerPage() {
     <PageWrapper>
       <MetaTags
         title={activeLesson ? activeLesson.title : course.title}
-        description={`Aprendiendo ${course.title} en LearnCraft.`}
+        description={`Aprendiendo ${course.title} en Desprogramados.`}
       />
       <div className="player">
 

@@ -8,7 +8,9 @@ export function Footer() {
       <div className="footer__inner">
         <div className="footer__grid">
           <div className="footer__brand">
-            <div className="footer__logo">Learn<span>Craft</span></div>
+            <div className="footer__logo">
+              <img src="/logo.png" alt="Desprogramados" style={{ height: '48px', width: 'auto' }} />
+            </div>
             <p className="footer__tagline">
               Cursos online premium impartidos por expertos de la industria. Mejora tus habilidades y construye lo que importa.
             </p>
@@ -57,7 +59,7 @@ export function Footer() {
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {new Date().getFullYear()} LearnCraft. Todos los derechos reservados.
+            © {new Date().getFullYear()} Desprogramados. Todos los derechos reservados.
           </p>
         </div>
       </div>
