@@ -56,8 +56,8 @@ export function HeroSection() {
 
   return (
     <section className="hero" aria-label="Inicio">
-      {/* Fondo: dot grid */}
       <div className="hero__bg" aria-hidden="true" />
+      <div className="hero__orb" aria-hidden="true" />
 
       <div className="hero__container">
         <div className="hero__grid">
